@@ -13,6 +13,12 @@
                 <x-jet-section-border />
             @endif
 
+            @if (isset(Auth::user()->npo))
+               @livewire('npo.update-profile-information-form')
+
+               <x-jet-section-border />
+           @endif
+
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')

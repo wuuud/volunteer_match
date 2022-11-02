@@ -28,24 +28,24 @@ class User extends Authenticatable
         'email',
         'password',
         'profile',
-        'birthdate',
-        'gender',
-        'zip',
-        'prefecture_code',
-        'prefecture',
-        'address',
-        'tel',
-        'want_to_do',
-        'my_job',
-        'language',
-        'university_name',
-        'university_major',
-        'university_grade',
-        'volunteer_start',
-        'volunteer_region',
-        'volunteer_type',
-        'volunteer_cause',
-        'volunteer_length',
+        // 'birthdate',
+        // 'gender',
+        // 'zip',
+        // 'prefecture_code',
+        // 'prefecture',
+        // 'address',
+        // 'tel',
+        // 'want_to_do',
+        // 'my_job',
+        // 'language',
+        // 'university_name',
+        // 'university_major',
+        // 'university_grade',
+        // 'volunteer_start',
+        // 'volunteer_region',
+        // 'volunteer_type',
+        // 'volunteer_cause',
+        // 'volunteer_length',
     ];
 
     /**
@@ -77,4 +77,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function npo()
+    {
+        return $this->hasOne(\App\Models\Npo::class);
+    }
 }

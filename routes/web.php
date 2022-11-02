@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VolunteerOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
@@ -26,3 +27,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('npo/register', function () {
+    return view('npo.register');
+})->middleware('guest')
+    ->name('npo.register');
+
+    Route::resource('volunteer_offers', VolunteerOfferController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('can:npo');
+
+Route::resource('volunteer_offers', VolunteerOfferController::class)
+    ->only(['show', 'index'])
+    ->middleware('auth');
