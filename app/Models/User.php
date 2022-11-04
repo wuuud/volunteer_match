@@ -82,4 +82,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Npo::class);
     }
+
+    public function hopes()
+    {
+        return $this->hasMany(Hope::class);
+    }
 }

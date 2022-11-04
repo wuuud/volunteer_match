@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolunteerOfferController;
+use App\Http\Controllers\HopeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,7 @@ Route::get('npo/register', function () {
 Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');
+
+Route::resource('volunteer_offers.hopes', HopeController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('can:user');

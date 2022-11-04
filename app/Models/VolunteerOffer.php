@@ -37,4 +37,9 @@ class VolunteerOffer extends Model
     // {
     //     return $this->belongsTo(Occupation::class);
     // }
+
+    public function hopes()
+    {
+        return $this->hasMany(Hope::class);
+    }
 }

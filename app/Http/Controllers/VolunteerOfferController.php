@@ -48,12 +48,17 @@ class VolunteerOfferController extends Controller
      * @param  \App\Models\VolunteerOffer  $volunteer_Offer
      * @return \Illuminate\Http\Response
      */
-    public function show(VolunteerOffer $volunteer_Offer)
+    public function show(VolunteerOffer $volunteer_offer)
     {
         VolunteerOfferView::updateOrCreate([
             'volunteer_offer_id' => $volunteer_offer->id,
             'user_id' => Auth::user()->id,
         ]);
+        $hope = !isset(Auth::user()->company)
+           ? $volunteer_offer->hopes()->firstWhere('user_id', Auth::user()->id)
+           : '';
+       
+       return view('volunteer_offers.show', compact('volunteer_offer', 'hope'));
     }
 
     /**
