@@ -26,9 +26,9 @@ class VolunteerOfferController extends Controller
 
         // 職種による検索時
         // $params = $request->query();
-        // $job_offers = JobOffer::search($params)->published()
+        // $volunteer_offers = JobOffer::search($params)->published()
         //     ->with(['company', 'occupation'])->latest()->paginate(5);
-        // $job_offers->appends($params);
+        // $volunteer_offers->appends($params);
         
         // $occupations = Occupation::all();
         return view('volunteer_offers.index', compact('volunteer_offers'));
@@ -105,7 +105,8 @@ class VolunteerOfferController extends Controller
      */
     public function edit(VolunteerOffer $volunteer_offer)
     {
-        //
+        // $occupations = Occupation::all();
+        return view('volunteer_offers.edit', compact('volunteer_offer'));
     }
 
     /**
@@ -117,7 +118,19 @@ class VolunteerOfferController extends Controller
      */
     public function update(VolunteerOfferRequest  $request, VolunteerOffer $volunteer_offer)
     {
-        //
+        if (Auth::user()->cannot('update', $volunteer_offer)) {
+            return redirect()->route('volunteer_offers.show', $volunteer_offer)
+                ->withErrors('自分の募集情報以外は更新できません');
+        }
+        $volunteer_offer->fill($request->all());
+        try {
+            $volunteer_offer->save();
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->withErrors('募集情報更新処理でエラーが発生しました');
+        }
+        return redirect()->route('volunteer_offers.show', $volunteer_offer)
+            ->with('notice', '募集情報を更新しました');
     }
 
     /**
@@ -128,6 +141,19 @@ class VolunteerOfferController extends Controller
      */
     public function destroy(VolunteerOffer $volunteer_offer)
     {
-        //
+        if (Auth::user()->cannot('delete', $volunteer_offer)) {
+            return redirect()->route('volun$volunteer_offers.show', $volunteer_offer)
+                ->withErrors('自分の募集情報以外は削除できません');
+        }
+ 
+        try {
+            $volunteer_offer->delete();
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->withErrors('募集情報削除処理でエラーが発生しました');
+        }
+ 
+        return redirect()->route('volunteer_offers.index')
+            ->with('notice', '募集情報を削除しました');
     }
 }

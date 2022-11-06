@@ -17,7 +17,7 @@ class ScoutController extends Controller
      */
     public function store(VolunteerOffer $volunteer_offer)
     {
-        $scout =new Scout([
+        $scout = new Scout([
             'volunteer_offer_id' => $volunteer_offer->id,
             'user_id' => Auth::user()->id,
         ]);

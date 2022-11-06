@@ -54,7 +54,7 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
 
 Route::resource('volunteer_offers.scouts', ScoutController::class)
     ->only(['store', 'destroy'])
-    ->middleware('can:user');
+    ->middleware('can:user');    //job_matchと異なるnpoに帰るべき？
 
 Route::resource('volunteer_offers.messages', MessageController::class)
     ->only(['store', 'destroy'])
