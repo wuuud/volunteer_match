@@ -11,12 +11,12 @@ class VolunteerOffer extends Model
     use HasFactory;
 
     // ステータス
-    const STATUS_CLOSE = 0;
-    const STATUS_OPEN = 1;
-    const STATUS_LIST = [
-        self::STATUS_CLOSE => '未公開',
-        self::STATUS_OPEN => '公開',
-    ];
+    // const STATUS_CLOSE = 0;
+    // const STATUS_OPEN = 1;
+    // const STATUS_LIST = [
+    //     self::STATUS_CLOSE => '未公開',
+    //     self::STATUS_OPEN => '公開',
+    // ];
 
     protected $fillable = [
         'title',
