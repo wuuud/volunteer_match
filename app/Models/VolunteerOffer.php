@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class VolunteerOffer extends Model
 {
@@ -24,6 +25,24 @@ class VolunteerOffer extends Model
         'description',
         'is_published',
     ];
+
+    public function scopePublished(Builder $query)
+    {
+        $query->where('is_published', true)
+            ->where('start_date', '>=', now());
+        return $query;
+    }
+
+
+    // 職種検索用のスコープを追加
+    // public function scopeSearch(Builder $query, $params)
+    // {
+    //     if (!empty($params['occupation_id'])) {
+    //         $query->where('occupation_id', $params['occupation_id']);
+    //     }
+
+    //     return $query;
+    // }
 
     public function npo()
     {

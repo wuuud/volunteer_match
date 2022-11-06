@@ -16,9 +16,18 @@ use App\Http\Controllers\MessageController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [VolunteerOfferController::class, 'index'])
+    ->middleware('auth')
+    ->name('root');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
+
+Route::get('/welcome', function () {
     return view('welcome');
-})->name('welcome');
+})->middleware('guest')
+    ->name('welcome');
 
 Route::middleware([
     'auth:sanctum',

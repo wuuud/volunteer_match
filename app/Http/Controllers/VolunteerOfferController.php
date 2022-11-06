@@ -18,8 +18,21 @@ class VolunteerOfferController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    // 職種による検索 public function index(Request $request)
     {
-        //
+        // $volunteer_offers = VolunteerOffer::with('npo')->latest()->paginate(5);
+        $volunteer_offers = VolunteerOffer::with('npo')
+            ->published()->latest()->paginate(5);
+
+        // 職種による検索時
+        // $params = $request->query();
+        // $job_offers = JobOffer::search($params)->published()
+        //     ->with(['company', 'occupation'])->latest()->paginate(5);
+        // $job_offers->appends($params);
+        
+        // $occupations = Occupation::all();
+        return view('volunteer_offers.index', compact('volunteer_offers'));
+
     }
 
     /**
