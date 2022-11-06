@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VolunteerOffer;
-use App\Models\Hope;
+use App\Models\Scout;
 use Illuminate\Support\Facades\Auth;
 
-class HopeController extends Controller
+class ScoutController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -17,14 +17,14 @@ class HopeController extends Controller
      */
     public function store(VolunteerOffer $volunteer_offer)
     {
-        $hope =new Hope([
+        $scout =new Scout([
             'volunteer_offer_id' => $volunteer_offer->id,
             'user_id' => Auth::user()->id,
         ]);
 
         try {
             // 登録
-            $hope->save();
+            $scout->save();
         } catch (\Exception $e) {
             return back()->withInput()
                 ->withErrors('エントリーでエラーが発生しました');
@@ -42,9 +42,9 @@ class HopeController extends Controller
      * @param  \App\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VolunteerOffer $volunteer_offer, Hope $hope)
+    public function destroy(VolunteerOffer $volunteer_offer, Scout $scout)
    {
-        $hope->elete();
+        $scout->elete();
 
         return redirect()->route('Volunteer_offers.show', $volunteer_offer)
             ->with('notice', 'エントリーを取り消しました'); 

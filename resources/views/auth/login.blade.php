@@ -3,6 +3,7 @@
         {{-- <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot> --}}
+        <h2 class="text-center font-medium text-gray-700 mb-4">ログイン</h2>
 
         <x-jet-validation-errors class="mb-4" />
 

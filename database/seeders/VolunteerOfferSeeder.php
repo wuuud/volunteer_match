@@ -25,7 +25,7 @@ class VolunteerOfferSeeder extends Seeder
                 // 'occupation_id' => Occupation::inRandomOrder()->first()->id,
                 'title' => $npo->name . 'の求人情報1のタイトル',
                 'description' => $npo->name . 'の求人情報1の本文',
-                'due_date' => Carbon::yesterday()->toDateString(),
+                'start_date' => Carbon::yesterday()->toDateString(),
                 'is_published' => 0,
             ]);
             // 募集終了(期限翌月)
@@ -34,7 +34,7 @@ class VolunteerOfferSeeder extends Seeder
                 // 'occupation_id' => Occupation::inRandomOrder()->first()->id,
                 'title' => $npo->name . 'の求人情報2のタイトル',
                 'description' => $npo->name . 'の求人情報2の本文',
-                'due_date' => Carbon::now()->firstOfMonth()->addMonth(1)->toDateString(),
+                'start_date' => Carbon::now()->firstOfMonth()->addMonth(1)->toDateString(),
                 'is_published' => 0,
             ]);
             // 募集中(期限翌月)
@@ -43,7 +43,7 @@ class VolunteerOfferSeeder extends Seeder
                 // 'occupation_id' => Occupation::inRandomOrder()->first()->id,
                 'title' => $npo->name . 'の求人情報3のタイトル',
                 'description' => $npo->name . 'の求人情報3の本文',
-                'due_date' => Carbon::now()->firstOfMonth()->addMonth(1)->toDateString(),
+                'start_date' => Carbon::now()->firstOfMonth()->addMonth(1)->toDateString(),
             ]);
             // 募集中(期限翌々月)
             VolunteerOffer::create([
@@ -51,7 +51,7 @@ class VolunteerOfferSeeder extends Seeder
                 // 'occupation_id' => Occupation::inRandomOrder()->first()->id,
                 'title' => $npo->name . 'の求人情報4のタイトル',
                 'description' => $npo->name . 'の求人情報4の本文',
-                'due_date' => Carbon::now()->firstOfMonth()->addMonth(2)->toDateString(),
+                'start_date' => Carbon::now()->firstOfMonth()->addMonth(2)->toDateString(),
             ]);
         }
     }

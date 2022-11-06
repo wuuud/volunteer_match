@@ -16,11 +16,11 @@ class VolunteerOffer extends Model
         self::STATUS_CLOSE => '未公開',
         self::STATUS_OPEN => '公開',
     ];
- 
+
     protected $fillable = [
         'title',
-        'occupation_id',
-        'due_date',
+        // 'occupation_id',
+        'start_date',                    //ボランティア開始日
         'description',
         'is_published',
     ];
@@ -29,17 +29,22 @@ class VolunteerOffer extends Model
     {
         return $this->belongsTo(Npo::class);
     }
-    public function volunteerOfferViews()
-   {
-       return $this->hasMany(VolunteerOfferView::class);
-   }
+    // public function volunteerOfferViews()
+    // {
+    //     return $this->hasMany(VolunteerOfferView::class);
+    // }
     // public function occupation()
     // {
     //     return $this->belongsTo(Occupation::class);
     // }
 
-    public function hopes()
+    public function scouts()
     {
-        return $this->hasMany(Hope::class);
+        return $this->hasMany(Scout::class);
+    }
+
+    public function messages()
+    {
+        return $this->morphMany(Message::class, 'messageable');
     }
 }

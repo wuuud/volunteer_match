@@ -1,7 +1,6 @@
-<h1>くりえい</h1>
-{{-- <x-app-layout>
+ <x-app-layout>
     <div class="container lg:w-1/2 md:w-4/5 w-11/12 mx-auto mt-8 px-8 bg-indigo-900 shadow-md rounded-md">
-        <h2 class="text-center text-lg text-white font-bold pt-6 tracking-widest">求人情報登録</h2>
+        <h2 class="text-center text-lg text-white font-bold pt-6 tracking-widest">ボランティア募集内容</h2>
 
         <x-validation-errors :errors="$errors" />
 
@@ -10,11 +9,11 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-white mb-2" for="title">
-                    タイトル
+                    概要
                 </label>
                 <input type="text" name="title"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
-                    required placeholder="タイトル" value="{{ old('title') }}">
+                    required placeholder="端的にボランティア内容を記載してください" value="{{ old('title') }}">
             </div>
             {{-- <div class="mb-4">
                 <label class="block text-white mb-2" for="occupation_id">
@@ -27,13 +26,13 @@
                     @endforeach
                 </select>
             </div> --}}
-            {{-- <div class="mb-4">
-                <label class="block text-white mb-2" for="due_date">
-                    募集期限
+         <div class="mb-4">
+                <label class="block text-white mb-2" for="start_date">
+                    ボランティア開始時期
                 </label>
-                <input type="date" name="due_date"
+                <input type="date" name="start_date"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
-                    required placeholder="募集期限" value="{{ old('due_date') }}">
+                    required placeholder="ボランティア開始時期" value="{{ old('start_date') }}">
             </div>
             <div class="mb-4">
                 <label class="block text-white mb-2" for="description">
@@ -41,13 +40,13 @@
                 </label>
                 <textarea name="description" rows="10"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
-                    required placeholder="詳細">{{ old('description') }}</textarea>
+                    required placeholder="活動内容や場所等の詳細を記載してください">{{ old('description') }}</textarea>
             </div>
             <div class="mb-4">
                 <label class="block text-white mb-2" for="description">
                     公開状況
                 </label>
-                @foreach (App\Model\VolunteerOffer::STATUS_LIST as $value => $name)
+                @foreach (App\Models\VolunteerOffer::STATUS_LIST as $value => $name)
                     <input type="radio" name="is_published" value="{{ $value }}" required>
                     <label class="text-white mr-2">{{ $name }}</label>
                 @endforeach
@@ -56,4 +55,4 @@
                 class="w-full flex justify-center bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-l hover:from-purple-500 hover:to-pink-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
         </form>
     </div>
-</x-app-layout> --}} 
+</x-app-layout> 

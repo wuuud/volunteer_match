@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 class UpdateProfileInformationForm extends Component
 {
     use WithFileUploads;
@@ -47,10 +48,10 @@ class UpdateProfileInformationForm extends Component
         $updater->update(
             Auth::user(),
             $this->photo
-            ? array_merge($this->state, ['npo_photo' => $this->photo])
-            : $this->state,
+                ? array_merge($this->state, ['npo_photo' => $this->photo])
+                : $this->state,
         );
-        
+
         if (isset($this->photo)) {
             return redirect()->route('profile.show');
         }
@@ -87,7 +88,7 @@ class UpdateProfileInformationForm extends Component
      *
      * @return \Illuminate\View\View
      */
-  
+
     public function render()
     {
         return view('livewire.npo.update-profile-information-form');

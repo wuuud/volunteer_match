@@ -133,4 +133,17 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'attributes'           => [
+        'title' => 'タイトル',
+        // 'occupation_id' => '職種',
+        'start_date' => '募集期限',
+        'description' => '詳細',
+        'status' => 'ステータス',
+    ],
+
+    'values' => [
+        'start_date' => [
+            'today' => '今日',
+        ]
+    ]
 ];

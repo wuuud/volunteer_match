@@ -96,6 +96,12 @@
                                 {{ __('Manage Account') }}
                             </div>
 
+                            @can ('create', App\Models\VolunteerOffer::class)
+                                <x-jet-dropdown-link href="{{ route('volunteer_offers.create') }}">
+                                    {{ 'ボランティア募集作成' }}
+                                </x-jet-dropdown-link>
+                            @endcan
+
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
@@ -169,6 +175,12 @@
                     </x-jet-responsive-nav-link>
                 @endif --}}
 
+                @can ('create', App\Models\VolunteerOffer::class)
+                    <x-jet-dropdown-link href="{{ route('volunteer_offers.create') }}">
+                        {{ 'ボランティア募集作成' }}
+                    </x-jet-dropdown-link>
+                @endcan
+                
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf

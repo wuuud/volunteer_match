@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
-use App\Models\Npo;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 class NpoFactory extends Factory
 {
@@ -17,7 +17,7 @@ class NpoFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'name' => $this->faker->unique()->npo,
+            'name' => $this->faker->unique()->company,
             'profile' => $this->faker->realText,
         ];
     }

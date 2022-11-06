@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteerOfferViewsTable extends Migration
+class CreateScoutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateVolunteerOfferViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteer_offer_views', function (Blueprint $table) {
-            $table->id();$table->foreignId('volunteer_offer_id')
+        Schema::create('scouts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('volunteer_offer_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
@@ -22,6 +23,7 @@ class CreateVolunteerOfferViewsTable extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->unique(['volunteer_offer_id', 'user_id']);
         });
@@ -34,6 +36,6 @@ class CreateVolunteerOfferViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteer_offer_views');
+        Schema::dropIfExists('scouts');
     }
 }

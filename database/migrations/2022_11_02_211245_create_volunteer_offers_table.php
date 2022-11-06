@@ -25,7 +25,7 @@ class CreateVolunteerOffersTable extends Migration
             //     ->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
-            $table->date('due_date');
+            $table->date('start_date');
             $table->boolean('is_published')->default(1);
             $table->timestamps();
         });

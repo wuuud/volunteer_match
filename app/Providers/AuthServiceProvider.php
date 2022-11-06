@@ -29,9 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('npo', function (User $user) {
             return isset($user->npo);
         });
- 
+
         Gate::define('user', function (User $user) {
             return !(isset($user->npo));
         });
-  }
+    }
 }

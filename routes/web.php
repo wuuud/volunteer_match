@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolunteerOfferController;
-use App\Http\Controllers\HopeController;
+use App\Http\Controllers\ScoutController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');
 
-Route::resource('volunteer_offers.hopes', HopeController::class)
+Route::resource('volunteer_offers.scouts', ScoutController::class)
     ->only(['store', 'destroy'])
     ->middleware('can:user');
+
+Route::resource('volunteer_offers.messages', MessageController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('auth');
