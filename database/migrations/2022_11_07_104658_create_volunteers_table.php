@@ -15,6 +15,7 @@ class CreateVolunteersTable extends Migration
     {
         Schema::create('volunteers', function (Blueprint $table) {
             $table->id();
+            // スカウト用に変更 'npo_id'
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnUpdate()

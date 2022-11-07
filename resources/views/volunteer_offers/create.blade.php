@@ -28,11 +28,11 @@
             </div> --}}
          <div class="mb-4">
                 <label class="block text-white mb-2" for="start_date">
-                    ボランティア開始時期
+                    ボランティア募集開始
                 </label>
                 <input type="date" name="start_date"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
-                    required placeholder="ボランティア開始時期" value="{{ old('start_date') }}">
+                    required placeholder="開始時期" value="{{ old('start_date') }}">
             </div>
             <div class="mb-4">
                 <label class="block text-white mb-2" for="description">

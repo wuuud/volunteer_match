@@ -21,8 +21,7 @@ class VolunteerOffer extends Model
 
     protected $fillable = [
         'title',
-        // 'occupation_id',
-        'start_date',                    //ボランティア開始日
+        'start_date',  //ボランティア募集開始日
         'description',
         'is_published',
     ];
@@ -33,17 +32,6 @@ class VolunteerOffer extends Model
             ->where('start_date', '>=', now());
         return $query;
     }
-
-
-    // 職種検索用のスコープを追加
-    // public function scopeSearch(Builder $query, $params)
-    // {
-    //     if (!empty($params['occupation_id'])) {
-    //         $query->where('occupation_id', $params['occupation_id']);
-    //     }
-
-    //     return $query;
-    // }
 
     public function scopeMyVolunteerOffer(Builder $query, $params)
     {
@@ -63,34 +51,20 @@ class VolunteerOffer extends Model
         return $query;
     }
 
-    
-    // public function volunteerOfferViews()
-    // {
-    //     return $this->hasMany(VolunteerOfferView::class);
-    // }
-    // public function occupation()
-    // {
-    //     return $this->belongsTo(Occupation::class);
-    // }
-
-    public function scouts()
-    {
-        return $this->hasMany(Scout::class);
-    }
-
-    public function messages()
-    {
-        return $this->morphMany(Message::class, 'messageable');
-    }
-
     // 追加
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);
     }
-    
+
     public function npo()
     {
         return $this->belongsTo(Npo::class);
+    }
+
+    // 削除？ エントリー用
+    public function scouts()
+    {
+        return $this->hasMany(Scout::class);
     }
 }

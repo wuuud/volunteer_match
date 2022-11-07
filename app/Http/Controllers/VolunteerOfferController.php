@@ -3,12 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VolunteerOffer;
-// use App\Models\VolunteerOfferView;
-use Illuminate\Http\Request;
-use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
-// use App\Models\Occupation;
-use App\Models\Volunteer;
 use App\Http\Requests\VolunteerOfferRequest;
 
 class VolunteerOfferController extends Controller
@@ -19,21 +14,10 @@ class VolunteerOfferController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    // 職種による検索 public function index(Request $request)
     {
-        // $volunteer_offers = VolunteerOffer::with('npo')->latest()->paginate(5);
         $volunteer_offers = VolunteerOffer::with('npo')
             ->published()->latest()->paginate(5);
-
-        // 職種による検索時
-        // $params = $request->query();
-        // $volunteer_offers = JobOffer::search($params)->published()
-        //     ->with(['company', 'occupation'])->latest()->paginate(5);
-        // $volunteer_offers->appends($params);
-        
-        // $occupations = Occupation::all();
         return view('volunteer_offers.index', compact('volunteer_offers'));
-
     }
 
     /**
@@ -43,8 +27,6 @@ class VolunteerOfferController extends Controller
      */
     public function create()
     {
-        // $occupations = Occupation::all();
-        // return view('volunteer_offers.create', compact('occupations'));
         return view('volunteer_offers.create');
     }
 
@@ -80,24 +62,15 @@ class VolunteerOfferController extends Controller
      */
     public function show(VolunteerOffer $volunteer_offer)
     {
-        // VolunteerOfferView::updateOrCreate([
-        //     'volunteer_offer_id' => $volunteer_offer->id,
-        //     'user_id' => Auth::user()->id,
-        // ]);
-        
         //npoなら テキストから変更  ！issetだった
-        $scout = !isset(Auth::user()->volunteer)
+        $scout = !isset(Auth::user()->npo)
             ? $volunteer_offer->scouts()->firstWhere('user_id', Auth::user()->id)
             : '';
-
         $scouts = Auth::user()->id == $volunteer_offer->npo->user_id
             ? $scouts = $volunteer_offer->scouts()->with('user')->get()
             : [];
 
-        $messages = $volunteer_offer->messages->load('user');
-
-        //    return view('volunteer_offers.show', compact('volunteer_offer', 'scout'));
-        return view('volunteer_offers.show', compact('volunteer_offer', 'scout', 'scouts', 'messages'));
+        return view('volunteer_offers.show', compact('volunteer_offer', 'scout', 'scouts'));
     }
 
     /**
@@ -148,14 +121,12 @@ class VolunteerOfferController extends Controller
             return redirect()->route('volun$volunteer_offers.show', $volunteer_offer)
                 ->withErrors('自分の募集情報以外は削除できません');
         }
- 
         try {
             $volunteer_offer->delete();
         } catch (\Exception $e) {
             return back()->withInput()
                 ->withErrors('募集情報削除処理でエラーが発生しました');
         }
- 
         return redirect()->route('volunteer_offers.index')
             ->with('notice', '募集情報を削除しました');
     }

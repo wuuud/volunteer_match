@@ -30,9 +30,15 @@ class Scout extends Model
         return self::STATUS_LIST[$this->status];
     }
 
-    public function volunteerOffer()
+    // 削除 エントリー用
+    // public function volunteerOffer()
+    // {
+    //     return $this->belongsTo(VolunteerOffer::class);
+    // }
+
+    public function volunteer()
     {
-        return $this->belongsTo(VolunteerOffer::class);
+        return $this->belongsTo(Volunteer::class);
     }
 
     public function user()
@@ -40,8 +46,4 @@ class Scout extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function messages()
-    {
-        return $this->morphMany(Message::class, 'messageable');
-    }
 }

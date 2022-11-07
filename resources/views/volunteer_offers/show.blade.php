@@ -6,12 +6,8 @@
 
         <article class="mb-2">
             <div class="flex justify-between text-sm">
-                {{-- <div class="flex item-center">
-                    <div class="border border-gray-900 px-2 h-7 leading-7 rounded-full">{{ $volunteer_offer->occupation->name }}</div>
-                </div> --}}
                 <div>
                     <span>掲載日 {{ $volunteer_offer->created_at->format('Y-m-d') }}</span>
-                    {{-- <span>{{ $volunteer_offer->volunteerOfferViews->count() }} views</span> --}}
                 </div>
             </div>
 

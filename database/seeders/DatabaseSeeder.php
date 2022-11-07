@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(4)->create();
         \App\Models\Npo::factory(4)->create();
+        \App\Models\Volunteer::factory(4)->create();
         $this->call(VolunteerOfferSeeder::class);
+        $this->call(ApplicaitonSeeder::class);
     }
 }

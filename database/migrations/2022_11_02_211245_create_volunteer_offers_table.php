@@ -19,10 +19,6 @@ class CreateVolunteerOffersTable extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            // $table->foreignId('occupation_id')
-            //     ->constrained()
-            //     ->cascadeOnUpdate()
-            //     ->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
             $table->date('start_date');

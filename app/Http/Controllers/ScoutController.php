@@ -20,7 +20,6 @@ class ScoutController extends Controller
             'volunteer_offer_id' => $volunteer_offer->id,
             'user_id' => Auth::user()->id,
         ]);
-
         try {
             // 登録
             $scout->save();
@@ -28,7 +27,6 @@ class ScoutController extends Controller
             return back()->withInput()
                 ->withErrors('エントリーでエラーが発生しました');
         }
-
         return redirect()
             ->route('volunteer_offers.show', $volunteer_offer)
             ->with('notice', 'エントリーしました');
@@ -44,7 +42,6 @@ class ScoutController extends Controller
     public function destroy(VolunteerOffer $volunteer_offer, Scout $scout)
    {
         $scout->delete();
-
         return redirect()->route('volunteer_offers.show', $volunteer_offer)
             ->with('notice', 'エントリーを取り消しました'); 
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\VolunteerOfferController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Volunteer;
 
 
 /*
@@ -53,6 +54,17 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');
 
+// scout用追加  indexのみ                要修正
+// Route::resource('volunteers', VolunteerController::class)
+//     ->name('volunteers.index')
+//     ->only(['index, show'])
+//     ->middleware('can:npo');
+    
+//     Route::get('/volunteers', function () {
+//     return view('volunteers.index');
+// })->middleware('can:npo')
+//     ->name('volunteers.index');
+
 // エントリー用
 Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
     ->name('volunteer_offers.scouts.approval')
@@ -65,6 +77,11 @@ Route::resource('volunteer_offers.messages', MessageController::class)
     ->only(['store', 'destroy'])
     ->middleware('auth');
 
-Route::resource('volunteer_offers.scouts', ScoutController::class)
+// 削除 volunteerエントリー用
+// Route::resource('volunteer_offers.scouts', ScoutController::class)
+//     ->only(['store', 'destroy'])
+//     ->middleware('can:user');
+
+    Route::resource('volunteer_offers.scouts', ScoutController::class)
     ->only(['store', 'destroy'])
     ->middleware('can:user');

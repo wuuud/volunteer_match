@@ -1,17 +1,4 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div> --}}
     <div class="container mx-auto w-3/5 my-8 px-4 py-4">
         @can('npo')
             <div class="flex justify-end items-center mb-3">
@@ -38,10 +25,8 @@
                 <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
                     <div class="mt-4">
                         <div class="flex justify-between text-sm items-center mb-4">
-                            {{-- <div class="border border-gray-900 px-2 h-7 leading-7 rounded-full">{{ $j->occupation->name }}</div> --}}
                             <div class="text-gray-700 text-sm text-right">
                                 <span>応募期限 :{{ $volunteer_offer->start_date }}</span>
-                                {{-- <span class="inline-block mx-1">|</span> --}}
                                 <span>エントリー :{{ $volunteer_offer->scouts->count() }}</span>
                             </div>
                         </div>
