@@ -34,7 +34,7 @@ class Scout extends Model
     {
         return $this->belongsTo(VolunteerOffer::class);
     }
- 
+
     public function user()
     {
         return $this->belongsTo(User::class);

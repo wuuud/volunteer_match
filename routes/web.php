@@ -53,10 +53,20 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');
 
-Route::resource('volunteer_offers.scouts', ScoutController::class)
-    ->only(['store', 'destroy'])
-    ->middleware('can:user');    //job_matchと異なるnpoに帰るべき？
-
+// エントリー用
+    Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
+    ->name('volunteer_offers.scouts.approval')
+    ->middleware('can:npo');
+// エントリー用
+Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/reject', [ScoutController::class, 'reject'])
+    ->name('volunteer_offers.scouts.reject')
+    ->middleware('can:npo');
 Route::resource('volunteer_offers.messages', MessageController::class)
     ->only(['store', 'destroy'])
     ->middleware('auth');
+
+
+
+Route::resource('volunteer_offers.scouts', ScoutController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('can:user');    //job_matchと異なるnpoに帰るべき？
