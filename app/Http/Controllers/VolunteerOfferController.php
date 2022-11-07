@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 // use App\Models\Occupation;
+use App\Models\Volunteer;
 use App\Http\Requests\VolunteerOfferRequest;
 
 class VolunteerOfferController extends Controller
@@ -85,7 +86,7 @@ class VolunteerOfferController extends Controller
         // ]);
         
         //npoなら テキストから変更  ！issetだった
-        $scout = isset(Auth::user()->npo)
+        $scout = !isset(Auth::user()->volunteer)
             ? $volunteer_offer->scouts()->firstWhere('user_id', Auth::user()->id)
             : '';
 

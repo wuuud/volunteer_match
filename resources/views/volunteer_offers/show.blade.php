@@ -10,14 +10,13 @@
                     <div class="border border-gray-900 px-2 h-7 leading-7 rounded-full">{{ $volunteer_offer->occupation->name }}</div>
                 </div> --}}
                 <div>
-                    <span>on {{ $volunteer_offer->created_at->format('Y-m-d') }}</span>
-                    <span class="inline-block mx-1">|</span>
+                    <span>掲載日 {{ $volunteer_offer->created_at->format('Y-m-d') }}</span>
                     {{-- <span>{{ $volunteer_offer->volunteerOfferViews->count() }} views</span> --}}
                 </div>
             </div>
 
-            <h2 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl">
-                {{ $volunteer_offer->title }}</h2>
+            <h3 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl">
+                {{ $volunteer_offer->title }}</h3>
             <div class="flex mt-1 mb-3">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div><img src="{{ $volunteer_offer->npo->profile_photo_url }}" alt=""

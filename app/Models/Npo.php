@@ -31,6 +31,7 @@ class Npo extends Model
         return $this->hasOne(User::class);
     }
 
+    
     public function volunteerOffers()
     {
         return $this->hasMany(VolunteerOffer::class);

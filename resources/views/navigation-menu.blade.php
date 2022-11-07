@@ -13,7 +13,14 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('作成した募集一覧') }}
+                    </x-jet-nav-link>
+                </div>
+
+                <!-- 追加  スカウト画面  Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('volunteer_offers.index') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('スカウト希望者一覧') }}
                     </x-jet-nav-link>
                 </div>
             </div>

@@ -50,7 +50,7 @@ class VolunteerOffer extends Model
         if (Auth::user()->can('npo')) {
             $query->latest()
                 ->with('scouts')
-                ->where('cnpo_id', Auth::user()->cnpo->id)
+                ->where('npo_id', Auth::user()->npo->id)
                 ->where('is_published', $params['is_published'] ?? self::STATUS_OPEN);
         } else {
             $query->latest()
@@ -63,10 +63,7 @@ class VolunteerOffer extends Model
         return $query;
     }
 
-    public function npo()
-    {
-        return $this->belongsTo(Npo::class);
-    }
+    
     // public function volunteerOfferViews()
     // {
     //     return $this->hasMany(VolunteerOfferView::class);
@@ -90,5 +87,10 @@ class VolunteerOffer extends Model
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);
+    }
+    
+    public function npo()
+    {
+        return $this->belongsTo(Npo::class);
     }
 }

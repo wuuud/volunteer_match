@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\VolunteerOffer;
 use App\Models\Scout;
 use Illuminate\Support\Facades\Auth;
@@ -39,14 +38,14 @@ class ScoutController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\VolunteerOffer  $volunteer_offer
-     * @param  \App\Models\Entry  $entry
+     * @param  \App\Models\Scout  $scout
      * @return \Illuminate\Http\Response
      */
     public function destroy(VolunteerOffer $volunteer_offer, Scout $scout)
    {
         $scout->delete();
 
-        return redirect()->route('Volunteer_offers.show', $volunteer_offer)
+        return redirect()->route('volunteer_offers.show', $volunteer_offer)
             ->with('notice', 'エントリーを取り消しました'); 
 }
 }

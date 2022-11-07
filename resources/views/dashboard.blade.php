@@ -17,12 +17,12 @@
             <div class="flex justify-end items-center mb-3">
                 <h4 class="text-gray-400 text-sm">公開状況</h4>
                 <ul class="flex">
-                    @foreach (App\Models\VplunteerOffer::STATUS_LIST as $value => $name)
+                    @foreach (App\Models\VolunteerOffer::STATUS_LIST as $value => $name)
                         <li class="ml-4">
                             <a href="?is_published={{ $value }}"
                                 class="hover:text-blue-500 
                                     @if (Request::get('is_published') === (string)$value 
-                                        || (Request::get('is_published') === null && App\Models\VplunteerOffer::STATUS_OPEN == $value)) 
+                                        || (Request::get('is_published') === null && App\Models\VolunteerOffer::STATUS_OPEN == $value)) 
                                         text-green-500 font-bold
                                     @endif
                                 ">
@@ -41,7 +41,7 @@
                             {{-- <div class="border border-gray-900 px-2 h-7 leading-7 rounded-full">{{ $j->occupation->name }}</div> --}}
                             <div class="text-gray-700 text-sm text-right">
                                 <span>応募期限 :{{ $volunteer_offer->start_date }}</span>
-                                <span class="inline-block mx-1">|</span>
+                                {{-- <span class="inline-block mx-1">|</span> --}}
                                 <span>エントリー :{{ $volunteer_offer->scouts->count() }}</span>
                             </div>
                         </div>
