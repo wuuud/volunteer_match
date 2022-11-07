@@ -69,4 +69,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Scout::class);
     }
+
+    // 追加
+    public function volunteer()
+    {
+        return $this->hasOne(\App\Models\Volunteer::class);
+    }
 }

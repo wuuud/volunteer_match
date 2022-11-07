@@ -85,4 +85,10 @@ class VolunteerOffer extends Model
     {
         return $this->morphMany(Message::class, 'messageable');
     }
+
+    // 追加
+    public function volunteer()
+    {
+        return $this->belongsTo(Volunteer::class);
+    }
 }
