@@ -45,7 +45,7 @@ Route::get('npo/register', function () {
 })->middleware('guest')
     ->name('npo.register');
 
-    Route::resource('volunteer_offers', VolunteerOfferController::class)
+Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('can:npo');
 
@@ -54,7 +54,7 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->middleware('auth');
 
 // エントリー用
-    Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
+Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
     ->name('volunteer_offers.scouts.approval')
     ->middleware('can:npo');
 // エントリー用

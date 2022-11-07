@@ -83,7 +83,9 @@ class VolunteerOfferController extends Controller
         //     'volunteer_offer_id' => $volunteer_offer->id,
         //     'user_id' => Auth::user()->id,
         // ]);
-        $scout = !isset(Auth::user()->npo)
+        
+        //npoなら テキストから変更  ！issetだった
+        $scout = isset(Auth::user()->npo)
             ? $volunteer_offer->scouts()->firstWhere('user_id', Auth::user()->id)
             : '';
 

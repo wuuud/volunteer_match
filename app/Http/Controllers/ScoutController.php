@@ -44,7 +44,7 @@ class ScoutController extends Controller
      */
     public function destroy(VolunteerOffer $volunteer_offer, Scout $scout)
    {
-        $scout->elete();
+        $scout->delete();
 
         return redirect()->route('Volunteer_offers.show', $volunteer_offer)
             ->with('notice', 'エントリーを取り消しました'); 

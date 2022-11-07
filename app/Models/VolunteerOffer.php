@@ -46,22 +46,22 @@ class VolunteerOffer extends Model
     // }
 
     public function scopeMyVolunteerOffer(Builder $query, $params)
-   {
-       if (Auth::user()->can('npo')) {
-           $query->latest()
-               ->with('scouts')
-               ->where('cnpo_id', Auth::user()->cnpo->id)
-               ->where('is_published', $params['is_published'] ?? self::STATUS_OPEN);
-       } else {
-           $query->latest()
-               ->with('scouts')
-               ->whereHas('scouts', function ($query) use ($params) {
-                   $query->where('user_id', Auth::user()->id);
-               });
-       }
+    {
+        if (Auth::user()->can('npo')) {
+            $query->latest()
+                ->with('scouts')
+                ->where('cnpo_id', Auth::user()->cnpo->id)
+                ->where('is_published', $params['is_published'] ?? self::STATUS_OPEN);
+        } else {
+            $query->latest()
+                ->with('scouts')
+                ->whereHas('scouts', function ($query) use ($params) {
+                    $query->where('user_id', Auth::user()->id);
+                });
+        }
 
-       return $query;
-   }
+        return $query;
+    }
 
     public function npo()
     {
