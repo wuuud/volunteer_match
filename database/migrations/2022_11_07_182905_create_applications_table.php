@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicaitonsTable extends Migration
+class CreateApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateApplicaitonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applicaitons', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('volunteer_id')
                 ->constrained()
@@ -22,7 +22,6 @@ class CreateApplicaitonsTable extends Migration
             $table->string('volunteer_name');
             $table->text('volunteer_profile');
             $table->string('volunteer_photo_path', 2048)->nullable();
-
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateApplicaitonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applicaitons');
+        Schema::dropIfExists('applications');
     }
 }

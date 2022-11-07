@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicaiton;
 use Illuminate\Http\Request;
+use App\Http\Requests\ApplicaitonRequest;
 
 class ApplicaitonController extends Controller
 {
@@ -24,18 +25,29 @@ class ApplicaitonController extends Controller
      */
     public function create()
     {
-        //
+        // return view('applicaitons.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ApplicaitonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ApplicaitonRequest $request)
     {
-        //
+        // $applicaiton = new Applicaiton($request->all());
+        // $applicaiton->volunteer_id = $request->user()->volunteer->id;
+        // try {
+        //     // 登録
+        //     $applicaiton->save();
+        // } catch (\Exception $e) {
+        //     return back()->withInput()
+        //         ->withErrors('求人情報登録処理でエラーが発生しました');
+        // }
+        // return redirect()
+        //     ->route('job_offers.show', $applicaiton)
+        //     ->with('notice', '求人情報を登録しました');
     }
 
     /**
@@ -46,7 +58,7 @@ class ApplicaitonController extends Controller
      */
     public function show(Applicaiton $applicaiton)
     {
-        //
+        return view('applicaitons.show', compact('job_offer'));
     }
 
     /**
@@ -63,11 +75,11 @@ class ApplicaitonController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ApplicaitonRequest  $request
      * @param  \App\Models\Applicaiton  $applicaiton
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Applicaiton $applicaiton)
+    public function update(ApplicaitonRequest $request, Applicaiton $applicaiton)
     {
         //
     }
