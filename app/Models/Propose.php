@@ -5,37 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Scout extends Model
+class Propose extends Model
 {
     use HasFactory;
 
     // ステータス
-    const STATUS_SCOUT = 0;
-    const STATUS_APPROVAL = 1;
-    const STATUS_REJECT = 2;
+    const STATUS_PROPOSE = 0;
+    const STATUS_ACCEPT = 1;
+    const STATUS_REFUSE = 2;
     const STATUS_LIST = [
-        self::STATUS_SCOUT => 'スカウト中',
-        self::STATUS_APPROVAL => '承認',
-        self::STATUS_REJECT => '却下',
+        self::STATUS_PROPOSE => '提案中',
+        self::STATUS_ACCEPT => '提案受け入れ',
+        self::STATUS_REFUSE => '提案拒否',
     ];
 
     protected $fillable = [
-        'volunteer_offer_id',
+        'application_id',
         'user_id',
         'status',
     ];
 
+    
     public function getStatusValueAttribute()
     {
         return self::STATUS_LIST[$this->status];
     }
 
-    
-    public function volunteerOffer()
+    public function application()
     {
-        return $this->belongsTo(VolunteerOffer::class);
+        return $this->belongsTo(Application::class);
     }
-
+    
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);
@@ -45,5 +45,4 @@ class Scout extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }

@@ -22,3 +22,4 @@ class NpoFactory extends Factory
         ];
     }
 }
+

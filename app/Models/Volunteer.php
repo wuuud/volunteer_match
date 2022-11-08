@@ -19,11 +19,11 @@ class Volunteer extends Model
         self::STATUS_OPEN => '公開',
     ];
     
-    // protected $fillable = [
-    //     'user_id',
-    //     'name',
-    //     'profile',
-    // ];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'profile',
+    ];
     // public function scopePublished(Builder $query)
     // {
     //     $query->where('is_published', true)

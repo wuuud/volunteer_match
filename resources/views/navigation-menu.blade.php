@@ -5,6 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
+                    {{-- <img src="{{ asset('images/logo.png') }}" alt=""> --}}
                     <a href="/">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
@@ -13,25 +14,30 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="/">
-                        {{ __('募集一覧') }}
+                        {{ __('全てのボランティア') }}
                     </x-jet-nav-link>
                 </div>
 
 
                 <!-- Navigation Links -->
+                @can('npo')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('作成した募集一覧') }}
+                        {{ __('作成したボランティア') }}
                     </x-jet-nav-link>
                 </div>
+                @endcan
 
                 <!-- 追加  スカウト画面  Navigation Links -->
+                @can('npo')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('applications.index') }}">
-                        {{ __('スカウト希望者一覧') }}
+                        {{ __('スカウトする') }}
                     </x-jet-nav-link>
                 </div>
+                @endcan
             </div>
+            
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->

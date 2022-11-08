@@ -20,6 +20,10 @@ class CreateVolunteersTable extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('volunteer_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('name');
             $table->string('profile_photo_path', 2048)->nullable();
             $table->text('profile')->nullable();

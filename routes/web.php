@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolunteerOfferController;
 use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Volunteer;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ProposeController;
 
 
 /*
@@ -46,50 +46,51 @@ Route::get('npo/register', function () {
 })->middleware('guest')
     ->name('npo.register');
 
-// 元のルート 仕事内容記載
-// Route::resource('volunteer_offers', VolunteerOfferController::class)
-//     ->only(['create', 'store', 'edit', 'update', 'destroy'])
-//     ->middleware('can:npo');
-
-// Route::resource('volunteer_offers', VolunteerOfferController::class)
-//     ->only(['show', 'index'])
-//     ->middleware('auth');
-
-Route::resource('applications', ApplicationsController::class)
+//ログイン直後の画面 仕事内容記載
+Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('can:volunteer');
+    // authServiceProvider.phpでgateを定義
+    ->middleware('can:npo');
 
-Route::resource('applications', ApplicationsController::class)
+Route::resource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');
 
+
+// application
+Route::resource('applications', ApplicationController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('can:volunteer');
+
+Route::resource('applications', ApplicationController::class)
+    ->only(['show', 'index'])
+    ->middleware('can:npo');
+
+
 // 元のルート エントリー用
-// Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
-//     ->name('volunteer_offers.scouts.approval')
-//     ->middleware('can:npo');
-// // エントリー用
-// Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/reject', [ScoutController::class, 'reject'])
-//     ->name('volunteer_offers.scouts.reject')
-//     ->middleware('can:npo');
-// メッセージ用？ 不要では？
-// Route::resource('volunteer_offers.messages', MessageController::class)
-//     ->only(['store', 'destroy'])
-//     ->middleware('auth');
-
+Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
+    ->name('volunteer_offers.scouts.approval')
+    ->middleware('can:npo');
 // エントリー用
-Route::patch('/applications/{application}/scouts/{scout}/approval', [ScoutController::class, 'approval'])
-    ->name('applications.scouts.approval')
-    ->middleware('can:volunteer');
-// エントリー用
-Route::patch('/applications/{application}/scouts/{scout}/reject', [ScoutController::class, 'reject'])
-    ->name('applications.scouts.reject')
-    ->middleware('can:volunteer');
-
-// 削除 volunteerエントリー用
-// Route::resource('volunteer_offers.scouts', ScoutController::class)
-//     ->only(['store', 'destroy'])
-//     ->middleware('can:user');
-
+Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/reject', [ScoutController::class, 'reject'])
+    ->name('volunteer_offers.scouts.reject')
+    ->middleware('can:npo');
+// エントリー
     Route::resource('volunteer_offers.scouts', ScoutController::class)
     ->only(['store', 'destroy'])
     ->middleware('can:user');
+
+
+
+// スカウト用
+Route::patch('/applications/{application}/proposes/{propose}/accept', [ScoutController::class, 'accept'])
+    ->name('applications.proposes.accept')
+    ->middleware('can:user');
+// スカウト用
+Route::patch('/applications/{application}/proposes/{propose}/refuse', [ScoutController::class, 'refuse'])
+    ->name('applications.proposes.refuse')
+    ->middleware('can:user');
+// スカウト用
+Route::resource('applications.proposes', ProposeController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('can:npo');

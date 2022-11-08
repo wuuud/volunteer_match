@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Volunteer::class);
     }
+
+    public function proposes()
+    {
+        return $this->hasMany(Propose::class);
+    }
 }

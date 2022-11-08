@@ -35,10 +35,12 @@
                     </form>
                 @else
                     @if (App\Models\Scout::STATUS_APPROVAL == $scout->status)
-                        @if (Route::has('scouts.messages.index'))
+                        {{-- @if (Route::has('scouts.messages.index'))
                             <a href="{{ route('scouts.messages.index', $scout) }}"
                                 class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</a>
-                        @endif
+                        @endif --}}
+                            <button class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</button>
+                        {{-- @endif --}}
                     @endif
                     <form action="{{ route('volunteer_offers.scouts.destroy', [$volunteer_offer, $scout]) }}"
                         method="post">
@@ -101,10 +103,11 @@
                                                     onclick="if(!confirm('却下しますか？')){return false};"
                                                     class="bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-l hover:from-purple-500 hover:to-pink-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 ml-2">
                                             @elseif (App\Models\Scout::STATUS_APPROVAL == $scout->status)
-                                                @if (Route::has('scouts.messages.index'))
+                                                {{-- @if (Route::has('scouts.messages.index'))
                                                     <a href="{{ route('scouts.messages.index', $scout) }}"
                                                         class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</a>
-                                                @endif
+                                                @endif --}}
+                                                <button class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</button>
                                                 <input type="submit" value="承認済み"
                                                     formaction="{{ route('volunteer_offers.scouts.reject', [$volunteer_offer, $scout]) }}"
                                                     onclick="if(!confirm('承認を取り消しますか？')){return false};"
