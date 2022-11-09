@@ -15,13 +15,12 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
+            $table->foreignId('volunteer_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('name');
             $table->text('career');
-            // $table->string('volunteer_photo_path', 2048)->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

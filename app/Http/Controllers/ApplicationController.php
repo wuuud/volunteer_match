@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Http\Requests\ApplicationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Volunteer;
 
 class ApplicationController extends Controller
 {
@@ -13,10 +15,13 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $applications = Application::with('volunteer')
-            ->latest()->paginate(8);
+        // 検索
+        $career= $request->career;
+        $params = $request->query();
+        $applications = Application::search($params)->latest()->paginate(4);
+        $applications->appends(compact('career'));
         return view('applications.index')->with(compact('applications'));
     }
 
@@ -45,11 +50,11 @@ class ApplicationController extends Controller
             $application->save();
         } catch (\Exception $e) {
             return back()->withInput()
-                ->withErrors('求人情報登録処理でエラーが発生しました');
+                ->withErrors('経歴等登録処理でエラーが発生しました');
         }
         return redirect()
-            ->route('job_offers.show', $application)
-            ->with('notice', '求人情報を登録しました');
+            ->route('applications.show', $application)
+            ->with('notice', '経歴等を登録しました');
     }
 
     /**
@@ -59,14 +64,14 @@ class ApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Application $application)
-    {
+    { 
         // テキスト13 エントリーボタン追加
-        $propose = !isset(Auth::user()->user)
+        $propose = !isset(Auth::user()->volunteer)
             ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
             : '';
         // 下記でテキスト15 エントリーの承認、却下機能
         // $proposes = Auth::user()->id == $application->volunteer->user_id
-        $proposes = Auth::user()->id == $application->user_id
+        $proposes = Auth::user()->id == $application->volunteer->user_id
             ? $proposes = $application->proposes()->with('user')->get()
             : [];
         return view('applications.show', compact('application', 'propose', 'proposes'));
@@ -81,7 +86,7 @@ class ApplicationController extends Controller
     public function edit(Application $application)
     {
         // $occupations = Occupation::all();
-        return view('$applications.edit', compact('application'));
+        return view('applications.edit', compact('application'));
     }
 
     /**
@@ -95,17 +100,17 @@ class ApplicationController extends Controller
     {
         if (Auth::user()->cannot('update', $application)) {
             return redirect()->route('applications.show', $application)
-                ->withErrors('自分の募集情報以外は更新できません');
+                ->withErrors('自分の経歴等以外は更新できません');
         }
         $application->fill($request->all());
         try {
             $application->save();
         } catch (\Exception $e) {
             return back()->withInput()
-                ->withErrors('募集情報更新処理でエラーが発生しました');
+                ->withErrors('経歴等の更新処理でエラーが発生しました');
         }
-        return redirect()->route('applications.show', 'application')
-            ->with('notice', '募集情報を更新しました');
+        return redirect()->route('applications.show', $application)
+            ->with('notice', '経歴等を更新しました');
     }
 
     /**
@@ -118,15 +123,15 @@ class ApplicationController extends Controller
     {
         if (Auth::user()->cannot('delete', $application)) {
             return redirect()->route('$applications.show', $application)
-                ->withErrors('自分の募集情報以外は削除できません');
+                ->withErrors('自分の経歴等以外は削除できません');
         }
         try {
             $application->delete();
         } catch (\Exception $e) {
             return back()->withInput()
-                ->withErrors('募集情報削除処理でエラーが発生しました');
+                ->withErrors('経歴等削除処理でエラーが発生しました');
         }
-        return redirect()->route('$applications.index')
-            ->with('notice', '募集情報を削除しました');
+        return redirect()->route('applications.index')
+            ->with('notice', '経歴等を削除しました');
     }
 }

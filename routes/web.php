@@ -6,6 +6,9 @@ use App\Http\Controllers\ScoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProposeController;
+// SNS認証用
+use App\Http\Controllers\Auth\OAuthController;
+
 
 
 /*
@@ -22,10 +25,6 @@ use App\Http\Controllers\ProposeController;
 Route::get('/', [VolunteerOfferController::class, 'index'])
     ->middleware('auth')
     ->name('root');
-
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('welcome');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -58,13 +57,17 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
 
 
 // application
+// nativagitonに届いたスカウトだけを掲載
+Route::get('/prodashboard', [UserController::class, 'prodashboard'])
+        ->name('prodashboard');
+
 Route::resource('applications', ApplicationController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('can:volunteer');
 
 Route::resource('applications', ApplicationController::class)
     ->only(['show', 'index'])
-    ->middleware('can:npo');
+    ->middleware('auth');
 
 
 // 元のルート エントリー用
@@ -78,19 +81,32 @@ Route::patch('/volunteer_offers/{volunteer_offer}/scouts/{scout}/reject', [Scout
 // エントリー
     Route::resource('volunteer_offers.scouts', ScoutController::class)
     ->only(['store', 'destroy'])
-    ->middleware('can:user');
+    ->middleware('can:volunteer');
 
 
 
 // スカウト用
-Route::patch('/applications/{application}/proposes/{propose}/accept', [ScoutController::class, 'accept'])
+Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
     ->name('applications.proposes.accept')
-    ->middleware('can:user');
+    ->middleware('can:volunteer');
 // スカウト用
-Route::patch('/applications/{application}/proposes/{propose}/refuse', [ScoutController::class, 'refuse'])
+Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeController::class, 'refuse'])
     ->name('applications.proposes.refuse')
-    ->middleware('can:user');
+    ->middleware('can:volunteer');
 // スカウト用
 Route::resource('applications.proposes', ProposeController::class)
     ->only(['store', 'destroy'])
     ->middleware('can:npo');
+
+
+// //SNS認証用
+// authから始まるルーティングに認証前にアクセスがあった場合
+Route::prefix('auth')->middleware('guest')->group(function () {
+    // auth/githubにアクセスがあった場合はOAuthControllerのredirectToProviderアクションへルーティング
+    Route::get('/github', [OAuthController::class, 'redirectToProvider'])
+        ->name('redirectToProvider');
+
+    // auth/github/callbackにアクセスがあった場合はOAuthControllerのoauthCallbackアクションへルーティング
+    Route::get('/github/callback', [OAuthController::class, 'oauthCallback'])
+        ->name('oauthCallback');
+});

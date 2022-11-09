@@ -71,7 +71,7 @@
         {{-- テキスト１５  エントリー承認・却下 --}}
         @if (!empty($scouts))
             <hr>
-            <h2 class="flex justify-center font-bold text-lg my-4">エントリー一覧</h2>
+            <h2 class="flex justify-center font-bold text-lg my-4">エントリー 一覧</h2>
             <div class="">
                 <form method="post">
                     @csrf
@@ -107,7 +107,7 @@
                                                     <a href="{{ route('scouts.messages.index', $scout) }}"
                                                         class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</a>
                                                 @endif --}}
-                                                <button class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</button>
+                                                <a class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">メッセージ</a>
                                                 <input type="submit" value="承認済み"
                                                     formaction="{{ route('volunteer_offers.scouts.reject', [$volunteer_offer, $scout]) }}"
                                                     onclick="if(!confirm('承認を取り消しますか？')){return false};"

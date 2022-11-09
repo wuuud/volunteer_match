@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Volunteer;
 use App\Models\Application;
-use App\Models\User;
 
 class ApplicationSeeder extends Seeder
 {
@@ -16,12 +15,12 @@ class ApplicationSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::take(10)->get();
-        foreach ($users as $user) {
+        $volunteers = Volunteer::take(10)->get();
+        foreach ($volunteers as $volunteer) {
             Application::create([
-                'user_id' => $user->id,
-                'name' => $user->name,
-                'career' => $user->name . 'が行いたいこと', 
+                'volunteer_id' => $volunteer->id,
+                // 'name' => $volunteer->name,
+                'career' => $volunteer->user->name . 'が行いたいこと', 
             ]);
         }
     }

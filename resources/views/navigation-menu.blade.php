@@ -21,23 +21,41 @@
 
                 <!-- Navigation Links -->
                 @can('npo')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('作成したボランティア') }}
-                    </x-jet-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('作成したボランティア') }}
+                        </x-jet-nav-link>
+                    </div>
                 @endcan
 
-                <!-- 追加  スカウト画面  Navigation Links -->
+                <!-- 追加  スカウトする画面  Navigation Links -->
                 @can('npo')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('applications.index') }}">
-                        {{ __('スカウトする') }}
-                    </x-jet-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('applications.index') }}">
+                            {{ __('スカウトする') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endcan
+
+                <!-- 追加  私のスカウト画面  Navigation Links -->
+                @can('volunteer')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('prodashboard') }}" :active="request()->routeIs('prodashboard')">
+                            {{ __('マイスカウト') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endcan
+
+                <!-- 追加  支払画面  Navigation Links -->
+                @can('auth')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('proposes_dashboard') }}">
+                            {{ __('支払い') }}
+                        </x-jet-nav-link>
+                    </div>
                 @endcan
             </div>
-            
+
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
@@ -75,8 +93,13 @@
                                     {{ 'ボランティア募集作成' }}
                                 </x-jet-dropdown-link>
                             @endcan
+                            @can('create', App\Models\Application::class)
+                                <x-jet-dropdown-link href="{{ route('applications.create') }}">
+                                    {{ 'スカウト用経歴等作成' }}
+                                </x-jet-dropdown-link>
+                            @endcan
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('') }}
                             </x-jet-dropdown-link>
                             <div class="border-t border-gray-100"></div>
 

@@ -14,7 +14,7 @@ class Scout extends Model
     const STATUS_APPROVAL = 1;
     const STATUS_REJECT = 2;
     const STATUS_LIST = [
-        self::STATUS_SCOUT => 'スカウト中',
+        self::STATUS_SCOUT => 'エントリー中',
         self::STATUS_APPROVAL => '承認',
         self::STATUS_REJECT => '却下',
     ];

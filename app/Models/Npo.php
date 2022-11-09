@@ -14,7 +14,6 @@ class Npo extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'profile'
     ];
 
     /**

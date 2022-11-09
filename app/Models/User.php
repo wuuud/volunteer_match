@@ -17,6 +17,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Notifiable;   //SNS認証用
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +28,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'profile',
     ];
 
     /**
@@ -59,6 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // SNS認証用
+    function IdentityProvider()
+    {
+        // IdentityProviderモデルと紐付ける 1対多の関係
+        return $this->hasOne(IdentityProvider::class);
+    }
+
 
     public function npo()
     {

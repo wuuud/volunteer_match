@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('会社プロフィール情報') }}
+        {{ __('NPO/NGOプロフィール情報の更新') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('会社プロフィール情報を更新する。') }}
+        {{-- {{ __('NPO/NGOのプロフィール情報を更新する。') }} --}}
     </x-slot>
 
     <x-slot name="form">
@@ -57,13 +57,6 @@
             <x-jet-label for="npo_name" value="{{ __('NPO/NGO名') }}" />
             <x-jet-input name="npo_name" id="npo_name" type="text" class="mt-1 block w-full" wire:model.defer="state.npo.name" autocomplete="npo_name" />
             <x-jet-input-error for="npo.name" class="mt-2" />
-        </div>
-
-        <!-- npo Profile -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="npo_profile" value="{{ __('ボランティア募集内容') }}" />
-            <textarea name="npo_profile" id="npo_profile" cols="30" rows="5" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" required  wire:model.defer="state.npo.profile" ></textarea>
-            <x-jet-input-error for="npo.profile" class="mt-2" />
         </div>
     </x-slot>
 

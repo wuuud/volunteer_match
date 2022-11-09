@@ -521,13 +521,13 @@
             <div class="h-full flex flex-auto bg-purple-900 text-white bg-no-repeat bg-cover relative bg-image">
                 <div
                     class="w-4/5 flex flex-auto flex-col md:flex-row items-center justify-center p-10 xl:p-32 overflow-hidden">
-                    <div class="absolute bg-gradient-to-b from-indigo-900 to-black opacity-75 inset-0 z-0"></div>
+                    {{-- 背景色の変更 from-amber-200 --}}
+                    <div class="absolute bg-gradient-to-b from-amber-200 to-black opacity-75 inset-0 z-0"></div>
                     <div class="w-4/5 z-10">
-                        <h2 class="text-xl xl:text-3xl italic mb-6">One Up Travel</h2>
-                        <div class="text-5xl sm:text-6xl xl:text-8xl font-bold leading-tight mb-6">世界の働くを<br>体験しよう
+                        <h2 class="text-xl xl:text-3xl italic mb-6">こいたび</h2>
+                        <div class="text-5xl sm:text-6xl xl:text-8xl font-bold leading-tight mb-6">もっと深い旅を<br>体験しよう
                         </div>
-                        <div class="sm:text-sm xl:text-md text-gray-200 font-normal">One up
-                            travelは世界で活躍したい日本人と、楽しく働くことができるNPO・NGOをマッチングするサービスです。</div>
+                        <div class="sm:text-sm xl:text-md text-gray-200 font-normal">こいたびは世界で活躍したい日本人と、楽しく働くことができるNPO・NGOをマッチングするサービスです。</div>
                     </div>
                     <div
                         class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full md:w-2/5 p-8 md:p-10 lg:p-14 sm:rounded-lg md:rounded-none relative z-11">
@@ -538,7 +538,7 @@
                                 </h3>
                                 <div>
                                     <a href="{{ route('login') }}"
-                                        class="w-full flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">ログイン</a>
+                                        class="w-full flex justify-center bg-gradient-to-r from-emerald-500 to-emerald-800 hover:bg-gradient-to-l hover:from-emerald-600 hover:to-emerald-800 text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">ログイン</a>
                                 </div>
                                 <p class="flex flex-col items-center justify-center mt-10 text-center text-md">
                                     <span>初めての方はこちら</span>
@@ -554,8 +554,8 @@
                                     スカウト希望の方はこちら
                                 </h3>
                                 <div>
-                                    <a href="{{ route('login') }}"
-                                        class="w-full flex justify-center bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-l hover:from-purple-500 hover:to-pink-600 text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">ログイン</a>
+                                    <a href="{{ route('login') }}" 
+                                        class="w-full flex justify-center bg-gradient-to-r from-orange-500 to-orange-800 hover:bg-gradient-to-l hover:from-orange-500 hover:to-orange-800 text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">ログイン</a>
                                 </div>
                                 <p class="flex flex-col items-center justify-center mt-10 text-center text-md">
                                     <span>初めての方はこちら</span>

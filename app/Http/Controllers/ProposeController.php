@@ -17,18 +17,19 @@ class ProposeController extends Controller
     public function store(Application $application)
     {
         $propose = new Propose([
-            '$application_id' => $application->id,
+            'application_id' => $application->id,
             'user_id' => Auth::user()->id,
         ]);
         try {
             $propose->save();
         } catch (\Exception $e) {
             return back()->withInput()
-                ->withErrors('エントリーでエラーが発生しました');
+                ->withErrors('スカウトでエラーが発生しました');
+                // ->withErrors($e->getMessage());
         }
         return redirect()
-            ->route('$applications.show', $application)
-            ->with('notice', 'エントリーしました');
+            ->route('applications.show', $application)
+            ->with('notice', 'スカウトしました');
     }
 
     /**
@@ -41,8 +42,8 @@ class ProposeController extends Controller
     public function destroy(Application $application, Propose $propose)
     {
         $propose->delete();
-        return redirect()->route('$applications.show', [$application, $propose])
-            ->with('notice', 'エントリーを取り消しました');
+        return redirect()->route('applications.show', [$application, $propose])
+            ->with('notice', 'スカウトを取り消しました');
     }
     /**
      *
@@ -54,8 +55,8 @@ class ProposeController extends Controller
     {
         $propose->status = Propose::STATUS_ACCEPT;
         $propose->save();
-        return redirect()->route('$applications.show', $application)
-            ->with('notice', 'エントリーを承認しました');
+        return redirect()->route('applications.show', $application)
+            ->with('notice', 'スカウトを承認しました');
     }
 
     /**
@@ -68,7 +69,7 @@ class ProposeController extends Controller
     {
         $propose->status = Propose::STATUS_REFUSE;
         $propose->save();
-        return redirect()->route('$applications.show', $application)
-            ->with('notice', 'エントリーを却下しました');
+        return redirect()->route('applications.show', $application)
+            ->with('notice', 'スカウトを却下しました');
     }
 }

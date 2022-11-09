@@ -84,13 +84,6 @@
             @endif
         </div>
     </x-slot>
-    
-    <!-- Profile -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="profile" value="{{ __('自己紹介') }}" />
-            <textarea name="profile" id="profile" cols="30" rows="5" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" wire:model.defer="state.profile" ></textarea>
-            <x-jet-input-error for="profile" class="mt-2" />
-        </div>
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">

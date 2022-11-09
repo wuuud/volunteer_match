@@ -18,7 +18,6 @@ class NpoFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => $this->faker->unique()->company,
-            'profile' => $this->faker->realText,
         ];
     }
 }

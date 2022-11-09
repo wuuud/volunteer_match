@@ -3,8 +3,7 @@
         {{-- <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot> --}}
-         <h2 class="text-center font-medium text-gray-700 mb-4">ボランティアアカウント登録</h2>
-
+        <h2 class="text-center text-xl font-bold font-xl mb-4 text-orange-500">ボランティア 新規登録</h2>
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -47,12 +46,12 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end mt-4 hover:text-sky-800 hover:font-bold">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4 bg-orange-700 hover:bg-orange-600">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>

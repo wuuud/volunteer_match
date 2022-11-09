@@ -1,10 +1,12 @@
 <?php
 
+
+// SNS認証用
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteersTable extends Migration
+class CreateIdentityProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +15,15 @@ class CreateVolunteersTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteers', function (Blueprint $table) {
-            $table->id();
-            // スカウト用に変更 'npo_id'
+        Schema::create('identity_providers', function (Blueprint $table) {
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId('volunteer_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->string('name');
-            $table->string('profile_photo_path', 2048)->nullable();
-            $table->text('profile')->nullable();
+            $table->string('uid'); // プロバイダーでのユーザーID(一意の値）
+            $table->string('provider'); // githubなどのプロバイダー名
+            $table->primary(['uid', 'provider']); // 複合キーでインデックスを追加
+            $table->unique(['user_id', 'provider']); // ユニーク制約
             $table->timestamps();
         });
     }
@@ -38,6 +35,6 @@ class CreateVolunteersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteers');
+        Schema::dropIfExists('identity_providers');
     }
 }

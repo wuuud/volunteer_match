@@ -3,7 +3,7 @@
         {{-- <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot> --}}
-         <h2 class="text-center font-medium text-gray-700 mb-4">NPO・NGOアカウント登録</h2>
+         <h2 class="text-center text-xl font-bold font-xl mb-4 text-emerald-700">NPO・NGO 新規登録</h2>
 
         <x-jet-validation-errors class="mb-4" />
 
@@ -16,7 +16,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="npo_name" value="{{ __('団体名') }}" />
+                <x-jet-label for="npo_name" value="{{ __('NPO/NGO名') }}" />
                 <x-jet-input id="npo_name" class="block mt-1 w-full" type="text" name="npo_name" :value="old('npo_name')" required autofocus autocomplete="npo_name" />
             </div>
 
@@ -53,11 +53,11 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-sky-600" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4 bg-green-500 hover:bg-green-400">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>

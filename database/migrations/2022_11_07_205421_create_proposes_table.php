@@ -15,11 +15,11 @@ class CreateProposesTable extends Migration
     {
         Schema::create('proposes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')
+            $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-                $table->foreignId('user_id')
+            $table->foreignId('application_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
