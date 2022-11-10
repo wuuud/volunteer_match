@@ -18,10 +18,7 @@ class Application extends Model
     ];
 
 
-    // https://qiita.com/Yado_Tarou/items/9da4e5248e8df5b2c5ce
-    // スコープを使用するには必ず最初にscopeを名前の初めに付ける
-    // 最初の変数には必ず$queryを使用
-    // スコープとはhttps://zenn.dev/naoki_oshiumi/articles/28a14c75f79599
+    // 検索
     public function scopeSearch(Builder $query, $search)
     {
         if (!empty($search['career'])) {
@@ -51,5 +48,10 @@ class Application extends Model
     public function proposes()
     {
         return $this->hasMany(Propose::class);
+    }
+
+    public function messages()
+    {
+        return $this->morphMany(Message::class, 'messageable');
     }
 }

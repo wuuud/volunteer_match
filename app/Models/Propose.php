@@ -45,4 +45,9 @@ class Propose extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function messages()
+    {
+        return $this->morphMany(Message::class, 'messageable');
+    }
 }

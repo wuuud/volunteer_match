@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Propose;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -32,6 +33,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('volunteer', function (User $user) {
             return !(isset($user->npo));
+        });
+
+        // message
+        Gate::define('message', function (User $user, Propose $propose) {
+            return $user->id === $propose->user_id
+                || $user->id === $propose->application->volunteer->user_id;
         });
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProposeController;
 // SNS認証用
 use App\Http\Controllers\Auth\OAuthController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ChatController;
 
 
 
@@ -61,6 +63,11 @@ Route::resource('volunteer_offers', VolunteerOfferController::class)
 Route::get('/prodashboard', [UserController::class, 'prodashboard'])
         ->name('prodashboard');
 
+// コメント
+Route::resource('applications.messages', MessageController::class)
+    ->only(['store', 'destroy'])
+    ->middleware('auth');
+
 Route::resource('applications', ApplicationController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('can:volunteer');
@@ -97,9 +104,12 @@ Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeCo
 Route::resource('applications.proposes', ProposeController::class)
     ->only(['store', 'destroy'])
     ->middleware('can:npo');
+// message
+Route::resource('proposes.messages', ChatController::class)
+        ->only(['index', 'store', 'destroy'])
+        ->middleware('auth');
 
-
-// //SNS認証用
+//SNS認証用
 // authから始まるルーティングに認証前にアクセスがあった場合
 Route::prefix('auth')->middleware('guest')->group(function () {
     // auth/githubにアクセスがあった場合はOAuthControllerのredirectToProviderアクションへルーティング

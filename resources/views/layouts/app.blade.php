@@ -17,6 +17,10 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        @if (isset($script))
+            {{ $script }}
+        @endif
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

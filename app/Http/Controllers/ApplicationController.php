@@ -6,7 +6,7 @@ use App\Models\Application;
 use App\Http\Requests\ApplicationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Volunteer;
+use App\Models\Message;
 
 class ApplicationController extends Controller
 {
@@ -74,7 +74,11 @@ class ApplicationController extends Controller
         $proposes = Auth::user()->id == $application->volunteer->user_id
             ? $proposes = $application->proposes()->with('user')->get()
             : [];
-        return view('applications.show', compact('application', 'propose', 'proposes'));
+        // message
+        $messages = $application->messages->load('user');
+
+        return view('applications.show')
+            ->with(compact('application', 'propose', 'proposes', 'messages'));
     }
 
     /**
