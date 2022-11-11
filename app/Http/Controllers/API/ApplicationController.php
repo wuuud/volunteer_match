@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Application;
+use Illuminate\Http\Request;
 use App\Http\Requests\ApplicationRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-// use App\Models\Message;
 
 class ApplicationController extends Controller
 {
@@ -17,22 +17,13 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        // 検索
+        /// 検索
         $career= $request->career;
         $params = $request->query();
         $applications = Application::search($params)->latest()->paginate(4);
         $applications->appends(compact('career'));
-        return view('applications.index')->with(compact('applications'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('applications.create');
+        // return view('applications.index')->with(compact('applications'));
+        return response()->json($applications);
     }
 
     /**
@@ -46,7 +37,6 @@ class ApplicationController extends Controller
         $application = new Application($request->all());
         $application->volunteer_id = $request->user()->volunteer->id;
         try {
-            // 登録
             $application->save();
         } catch (\Exception $e) {
             return back()->withInput()
@@ -64,7 +54,7 @@ class ApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Application $application)
-    { 
+    {
         // テキスト13 エントリーボタン追加
         $propose = !isset(Auth::user()->volunteer)
             ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
@@ -76,21 +66,10 @@ class ApplicationController extends Controller
             : [];
         // message
         $messages = $application->messages->load('user');
-
+        // return response()
+        //     ->json(compact('application', 'propose', 'proposes', 'messages'));
         return view('applications.show')
             ->with(compact('application', 'propose', 'proposes', 'messages'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Application  $application
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Application $application)
-    {
-        // $occupations = Occupation::all();
-        return view('applications.edit', compact('application'));
     }
 
     /**
@@ -135,8 +114,8 @@ class ApplicationController extends Controller
             return back()->withInput()
                 ->withErrors('経歴等削除処理でエラーが発生しました');
         }
-
         return redirect()->route('applications.index')
             ->with('notice', '経歴等を削除しました');
+
     }
 }

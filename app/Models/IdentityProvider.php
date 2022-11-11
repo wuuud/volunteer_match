@@ -11,10 +11,19 @@ class IdentityProvider extends Model
 
     protected $fillable = [
         'uid',
-        'provider'];
+        'provider'
+    ];
+
+    protected $hidden = [
+        // 'user_id',
+        // 'created_at',
+        // 'updated_at',
+        // 'provider'
+    ];
 
     function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }

@@ -25,7 +25,16 @@ class Propose extends Model
         'status',
     ];
 
-    
+    // API
+    protected $appends = [
+        // 'application_id',
+        // 'status',
+    ];
+    protected $hidden = [
+        // 'user_id',
+    ];
+
+
     public function getStatusValueAttribute()
     {
         return self::STATUS_LIST[$this->status];
@@ -35,7 +44,7 @@ class Propose extends Model
     {
         return $this->belongsTo(Application::class);
     }
-    
+
     public function volunteer()
     {
         return $this->belongsTo(Volunteer::class);

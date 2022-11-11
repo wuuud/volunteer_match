@@ -19,7 +19,7 @@ class CreateVolunteersTable extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('career');
+            // $table->string('career');
             // $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });

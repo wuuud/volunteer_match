@@ -28,11 +28,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function prodashboard(Request $request)
+    public function myApplication()
     {
-        $params = $request->query();
-        $applications = Application::myApplication($params)->paginate(5);
-
-        return view('applications.index', compact('applications'));
+        $application = Application::myApplication()->first();
+        if (isset($application)){
+            return redirect()->route('applications.show', $application);
+        }
+        return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
     }
 }

@@ -14,10 +14,10 @@ class VolunteerFactory extends Factory
      */
     public function definition()
     {
+        // API前
         return [
             'user_id' => User::factory(),
-            // 'name' => $this->faker->unique()->name(),
-            'career' => $this->faker->realText,
+            // 'career' => $this->faker->realText,
         ];
     }
 }

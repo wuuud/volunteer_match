@@ -23,7 +23,6 @@ class MessageController extends Controller
         $message->messageable_id = $request->messageable_id;
         $message->user_id = Auth::user()->id;
         $message->message = $request->message;
-
         try {
             // 登録
             $message->save();
@@ -31,9 +30,7 @@ class MessageController extends Controller
             return back()->withInput()
                 ->withErrors('メッセージ登録処理でエラーが発生しました');
         }
-
         $application = Application::find($request->messageable_id);
-
         return redirect()
             ->route('applications.show', $application)
             ->with('notice', 'メッセージを登録しました');

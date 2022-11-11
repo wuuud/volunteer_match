@@ -19,7 +19,6 @@ class ApplicationSeeder extends Seeder
         foreach ($volunteers as $volunteer) {
             Application::create([
                 'volunteer_id' => $volunteer->id,
-                // 'name' => $volunteer->name,
                 'career' => $volunteer->user->name . 'が行いたいこと', 
             ]);
         }

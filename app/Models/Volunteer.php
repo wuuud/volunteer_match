@@ -21,14 +21,16 @@ class Volunteer extends Model
     
     protected $fillable = [
         'user_id',
-        'career',
     ];
-    // public function scopePublished(Builder $query)
-    // {
-    //     $query->where('is_published', true)
-    //         ->where('start_date', '>=', now());
-    //     return $query;
-    // }
+
+    // API
+    protected $appends = [
+        'volunteer_name'
+    ];
+    protected $hidden = [
+        // 'user_id',
+    ];
+    
 
     /**
      * The accessors to append to the model's array form.
@@ -58,6 +60,11 @@ class Volunteer extends Model
     public function applications()
     {
         return $this->hasMany(Applicaiton::class);
+    }
+
+    public function getUserNameAttribute()
+    {
+        return $this->user->name;
     }
 }
 

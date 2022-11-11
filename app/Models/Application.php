@@ -12,11 +12,20 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'volunteer_id',
-        'name',
         'career',
+        'status',
     ];
 
+    // API用 アクセサで記載したこと
+    protected $append = [
+        'volunteer_name.user_name',
+    ];
+
+    protected $hidden = [
+        // 'volunteer_id',
+        // 'created_at',
+        // 'updated_at',
+    ];
 
     // 検索
     public function scopeSearch(Builder $query, $search)
@@ -26,7 +35,7 @@ class Application extends Model
         }
     }
 
-    public function scopeMyApplication(Builder $query, $params)
+    public function scopeMyApplication(Builder $query)
     {
         if (Auth::user()->can('volunteer')) {
             $query->latest()
@@ -35,7 +44,7 @@ class Application extends Model
         } else {
             $query->latest()
                 ->with('proposes')
-                ->whereHas('proposes', function ($query) use ($params) {
+                ->whereHas('proposes', function ($query) {
                     $query->where('user_id', Auth::user()->id);
                 });
         }
@@ -53,5 +62,10 @@ class Application extends Model
     public function messages()
     {
         return $this->morphMany(Message::class, 'messageable');
+    }
+
+    public function getVolunteerNameAttribute()
+    {
+        return $this->volunteer->user->name;
     }
 }

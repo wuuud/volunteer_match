@@ -16,6 +16,17 @@ class Npo extends Model
         'name',
     ];
 
+    // protected $appends = [
+    //     'user_id',
+    // ];
+
+    // protected $hidden = [
+    //     'name',
+    //     'profile_photo_path',
+    //     'created_at',
+    //     'updated_at',
+    // ];
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -30,7 +41,7 @@ class Npo extends Model
         return $this->hasOne(User::class);
     }
 
-    
+
     public function volunteerOffers()
     {
         return $this->hasMany(VolunteerOffer::class);

@@ -21,17 +21,17 @@
             </div>
             <p class="font-bold border-2 border-orange-200 rounded-lg rows=8">{!! nl2br(e($application->career)) !!}</p>
         </article>
-        {{-- 13.エントリー store,destory npo画面で見える --}}
+        {{-- 13.スカウト store,destory npo画面で見える --}}
         <div class="flex flex-col sm:flex-row items-center sm:justify-end text-center my-4">
             @can('npo')
                 @if (empty($propose))
                     <form action="{{ route('applications.proposes.store', $application) }}" method="post">
                         @csrf
-                        <input type="submit" value="エントリー" onclick="if(!confirm('エントリーしますか？')){return false};"
-                            class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32">
+                        <input type="submit" value="スカウト" onclick="if(!confirm('スカウトしますか？')){return false};"
+                            class="bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-gradient-to-l hover:from-orange-500 hover:to-orange-400 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32">
                     </form>
                 @else
-                    {{-- 0:エントリー中(デフォルト) 1:承認 2:却下　$propose->status  proposeモデルに記載 --}}
+                    {{-- 0:スカウト中(デフォルト) 1:承認 2:却下　$propose->status  proposeモデルに記載 --}}
                     @if (App\Models\Propose::STATUS_ACCEPT == $propose->status)
                         {{--            下記のrouteを確認 --}}
                         @if (Route::has('proposes.messages.index'))
@@ -44,8 +44,8 @@
                     <form action="{{ route('applications.proposes.destroy', [$application, $propose]) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value="エントリー取消" onclick="if(!confirm('エントリーを取り消しますか？')){return false};"
-                            class="bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-l hover:from-purple-500 hover:to-pink-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32">
+                        <input type="submit" value="スカウト取消" onclick="if(!confirm('スカウトを取り消しますか？')){return false};"
+                            class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:bg-gradient-to-l hover:from-emerald-500 hover:to-emerald-600 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32">
                     </form>
                 @endif
             @endcan
@@ -117,7 +117,7 @@
             @endforeach
         </div>
 
-        {{-- テキスト１５  エントリー承認・却下 --}}
+        {{-- テキスト１５  スカウト承認・却下 --}}
         @if (!empty($proposes))
             <hr>
             <h2 class="flex justify-center font-bold text-lg my-4">提案を受けたNPO・NGO一覧</h2>

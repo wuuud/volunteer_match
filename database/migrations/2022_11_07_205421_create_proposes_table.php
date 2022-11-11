@@ -23,7 +23,7 @@ class CreateProposesTable extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0); //0:エントリー中(デフォルト) 1:承認 2:却下
             $table->timestamps();
             $table->unique(['application_id', 'user_id']);
         });

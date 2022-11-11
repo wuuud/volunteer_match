@@ -40,7 +40,7 @@
                 <!-- 追加  私のスカウト画面  Navigation Links -->
                 @can('volunteer')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('prodashboard') }}" :active="request()->routeIs('prodashboard')">
+                        <x-jet-nav-link href="{{ route('myapplication') }}" :active="request()->routeIs('myapplicatin')">
                             {{ __('マイスカウト') }}
                         </x-jet-nav-link>
                     </div>
@@ -86,8 +86,8 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
-                            </div>
+                                {{ __('アカウント管理') }}
+                            </div> 
                             @can('create', App\Models\VolunteerOffer::class)
                                 <x-jet-dropdown-link href="{{ route('volunteer_offers.create') }}">
                                     {{ 'ボランティア募集作成' }}
@@ -98,8 +98,9 @@
                                     {{ 'スカウト用経歴等作成' }}
                                 </x-jet-dropdown-link>
                             @endcan
+
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('') }}
+                                {{ __('Profile') }}
                             </x-jet-dropdown-link>
                             <div class="border-t border-gray-100"></div>
 

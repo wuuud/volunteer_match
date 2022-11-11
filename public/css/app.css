@@ -2434,6 +2434,11 @@ select {
   --tw-gradient-to: rgb(249 115 22 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.hover\:from-emerald-500:hover {
+  --tw-gradient-from: #10b981;
+  --tw-gradient-to: rgb(16 185 129 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .hover\:to-indigo-600:hover {
   --tw-gradient-to: #4f46e5;
 }
@@ -2454,6 +2459,9 @@ select {
 }
 .hover\:to-orange-800:hover {
   --tw-gradient-to: #9a3412;
+}
+.hover\:to-orange-400:hover {
+  --tw-gradient-to: #fb923c;
 }
 .hover\:font-bold:hover {
   font-weight: 700;

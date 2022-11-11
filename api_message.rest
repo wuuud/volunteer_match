@@ -1,0 +1,20 @@
+@host = localhost
+
+### applications.messages.store
+# @prompt application_id
+POST /api/applications/{{ application_id }}/messages HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "message": "test_message"
+}
+
+
+### applications.messages.destroy
+# @prompt application_id
+# @prompt message_id
+DELETE /api/applications/{{ application_id }}/messages/{{ message_id }} HTTP/1.1
+Host: {{ host }}
+Accept: application/json

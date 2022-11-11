@@ -50,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
             }else{
                 Volunteer::create([
                     'user_id' => $user->id,
-                    'career' => "募集中",
+                    'career' => "準備中",
                 ]);
             }
             DB::commit();

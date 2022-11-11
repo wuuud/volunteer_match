@@ -2115,7 +2115,7 @@ window.addEventListener('DOMContentLoaded', function () {
     message.value = '';
   });
   // 発生したMessageSendイベントを受け取ったら処理する
-    window.Echo.private(`volunteer-match.${messageable_id}`).listen('MessageSend', function (e) {
+  window.Echo.channel('volunteer-match').listen('MessageSend', function (e) {
     var current_user_id = document.getElementById('current_user_id').value;
     // ISO 8601の時間表記から日本の時間を取得する
     var date = new Date(e.message.created_at);

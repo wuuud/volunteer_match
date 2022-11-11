@@ -15,12 +15,12 @@
         </div>
         @endcan
         
-        {{-- prodashboard --}}
-            @can('create')
+        {{-- myapplication --}}
+            {{-- @can('create')
                 <a href="{{ route('applications.create') }}"
                     class="bg-gradient-to-r from-orange-300 to-orange-600 hover:bg-gradient-to-l hover:from-orange-600 hover:to-orange-300 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">編集</a>
             @endcan
-            {{-- @can('update', $application)
+            @can('update', $application)
                 <a href="{{ route('applications.edit', $application) }}"
                     class="bg-gradient-to-r from-orange-300 to-orange-600 hover:bg-gradient-to-l hover:from-orange-600 hover:to-orange-300 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">編集</a>
             @endcan
@@ -43,8 +43,7 @@
                             <div>
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <img class="h-8 w-8 rounded-full object-cover bg-merald-80"
-                                        src="{{ $application->volunteer->user->profile_photo_url }}"
-                                        alt="{{ $application->volunteer->user->name }}" />
+                                        src="{{ $application->volunteer->user->profile_photo_url }}"/>
                                 @endif
                             </div>
                             <div class="text-sm font-semibold">
@@ -55,7 +54,6 @@
                             <p class="mt-4 text-md text-gray-600">
                                 {{ Str::limit($application->career, 50, '...') }}
                             </p>
-
                         </div>
 
                         <div class="flex justify-between items-center">
@@ -68,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
+                <br>
             @endforeach
             <div class="block mt-3">
                 {{ $applications->links() }}

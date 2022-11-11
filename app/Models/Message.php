@@ -14,6 +14,17 @@ class Message extends Model
         'messageable_id',
         'message',
     ];
+    // API
+    // protected $appends = [
+    //     'message',
+    // ];
+    // protected $hidden = [
+    //     'messageable_type',
+    //     'messageable_id',
+    //     'message',
+    //     'updated_at',
+    //     'created_at',
+    // ];
 
     public function user()
     {
