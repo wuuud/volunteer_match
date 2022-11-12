@@ -1,0 +1,57 @@
+@host = localhost
+## myApplication
+# @prompt application_id
+GET /api/myapplication HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+# Authorization: Bearer {{ token }}
+
+# ## index
+# GET /api/applications/proposes HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Authorization: Bearer {{ token }}
+
+
+# ## show
+# # @prompt application_id
+# GET /api/applications/{{ application_id }}?perPage=20&page=1 HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Authorization: Bearer {{ token }}
+
+
+# ### store
+# # @prompt application_id
+# POST /api/applications/{{ application_id }}/proposes HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Content-Type: multipart/form-data; boundary=----storeForm
+# # boundatyは送信するデータの目印
+
+
+
+# ### destroy
+# # @prompt application_id
+# # @prompt propose_id
+# DELETE /api/applications/{{ application_id }}/proposes/{{ propose_id }} HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Content-Type: application/json
+
+
+# ### accept
+# # @prompt application_id
+# # @prompt propose_id
+# PATCH /api/applications/{{ application_id }}/proposes/{{ propose_id }}/accept  HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+
+
+# ### refuse
+# # @prompt application_id
+# # @prompt propose_id
+# PATCH /api/applications/{{ application_id }}/proposes/{{ propose_id }}/refuse HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Content-Type: application/json

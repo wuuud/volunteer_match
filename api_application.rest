@@ -16,56 +16,27 @@ Accept: application/json
 
 
 ### store
-# @prompt file
 POST /api/applications HTTP/1.1
 Host: {{ host }}
 Accept: application/json
-Authorization: Bearer {{ token }}
-Content-Type: multipart/form-data; boundary=----storeForm
-# boundatyは送信するデータの目印
+Content-Type: application/json
 
-------storeForm
-Content-Disposition: form-data; name="title"
-
-Test タイトル
-------storeForm
-Content-Disposition: form-data; name="body"
-
-Test 本文
-------storeForm
-Content-Disposition: form-data; name="image"; filename="file.jpg"
-
-< {{ file }}
-------storeForm--
-
+{
+    "career": "test_career"
+}
 
 
 ### update
-# @prompt file
-POST /api/applications/1 HTTP/1.1
+# @prompt application_id
+PATCH /api/applications/{{ application_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
+Content-Type: application/json
 # Authorization: Bearer {{ token }}
-Content-Type: multipart/form-data; boundary=----updateForm
-# boundatyは送信するデータの目印
 
-------updateForm
-Content-Disposition: form-data; name="_method"
-
-PATCH
-------updateForm
-Content-Disposition: form-data; name="title"
-
-Test タイトル
-------updateForm
-Content-Disposition: form-data; name="body"
-
-Test 本文
-------updateForm
-Content-Disposition: form-data; name="image"; filename="file.jpg"
-
-< {{ file }}
-------updateForm--
+{
+    "career": "update_career"
+}
 
 
 
@@ -74,4 +45,5 @@ Content-Disposition: form-data; name="image"; filename="file.jpg"
 DELETE /api/applications/{{ application_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
+Content-Type: application/json
 # Authorization: Bearer {{ token }}

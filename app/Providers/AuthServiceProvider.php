@@ -6,6 +6,7 @@ use App\Models\Propose;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -40,5 +41,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id === $propose->user_id
                 || $user->id === $propose->application->volunteer->user_id;
         });
-    }
+    
+
+    if (! $this->app->routesAreCached()) {
+            Passport::routes();
+        }
+}
 }

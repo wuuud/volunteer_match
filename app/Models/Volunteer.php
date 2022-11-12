@@ -25,10 +25,11 @@ class Volunteer extends Model
 
     // API
     protected $appends = [
-        'volunteer_name'
+        'user_name'
     ];
     protected $hidden = [
         // 'user_id',
+        'user',
     ];
     
 

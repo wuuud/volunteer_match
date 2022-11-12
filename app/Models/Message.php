@@ -18,13 +18,11 @@ class Message extends Model
     // protected $appends = [
     //     'message',
     // ];
-    // protected $hidden = [
-    //     'messageable_type',
-    //     'messageable_id',
-    //     'message',
-    //     'updated_at',
-    //     'created_at',
-    // ];
+
+    protected $hidden = [
+        // 'user_id',
+        'user',
+    ];
 
     public function user()
     {

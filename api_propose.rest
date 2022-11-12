@@ -1,6 +1,6 @@
 @host = localhost
 
-### index
+# ## index
 # GET /api/applications/proposes HTTP/1.1
 # Host: {{ host }}
 # Accept: application/json
@@ -16,53 +16,36 @@
 
 
 ### store
-# @prompt file
+# @prompt application_id
 POST /api/applications/{{ application_id }}/proposes HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: multipart/form-data; boundary=----storeForm
 # boundatyは送信するデータの目印
 
-------storeForm
-Content-Disposition: form-data; name="title"
 
-Test タイトル
-------storeForm
-Content-Disposition: form-data; name="body"
 
-Test 本文
-------storeForm
-Content-Disposition: form-data; name="image"; filename="file.jpg"
-
-< {{ file }}
-------storeForm--
-
+### destroy
+# @prompt application_id
+# @prompt propose_id
+DELETE /api/applications/{{ application_id }}/proposes/{{ propose_id }} HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+Content-Type: application/json
 
 
 ### accept
 # @prompt application_id
 # @prompt propose_id
-POST /api/applications/{{ application_id }}/proposes/{{ propose_id }}/accept HTTP/1.1
+PATCH /api/applications/{{ application_id }}/proposes/{{ propose_id }}/accept  HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+
+
+### refuse
+# @prompt application_id
+# @prompt propose_id
+PATCH /api/applications/{{ application_id }}/proposes/{{ propose_id }}/refuse HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: application/json
-
-{
-    "_method": "PATCH",
-    "message": "Test Message"
-}
-
-
-### destroy
-# @prompt application_id
-# @prompt propose_id
-DELETE /api/applications/{{ application_id }}/proposes/{{ propose_id }} HTTP/1.1
-Host: {{ host }}
-Accept: application/json
-
-
-### destroy
-# @prompt application_id
-DELETE /api/applications/{{ application_id }}/proposes/{{ propose_id }} HTTP/1.1
-Host: {{ host }}
-Accept: application/json

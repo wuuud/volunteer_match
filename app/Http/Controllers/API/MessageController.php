@@ -60,10 +60,10 @@ class MessageController extends Controller
     {
         $application = $message->messageable;
 
-        if (Auth::user()->id != $message->user_id) {
-            return redirect()->route('applications.show', $application)
-                ->withErrors('自分のメッセージ以外は削除できません');
-        }
+        // if (Auth::user()->id != $message->user_id) {
+        //     return redirect()->route('applications.show', $application)
+        //         ->withErrors('自分のメッセージ以外は削除できません');
+        // }
         try {
             $message->delete();
         } catch (\Exception $th) {

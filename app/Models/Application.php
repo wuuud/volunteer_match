@@ -13,18 +13,31 @@ class Application extends Model
 
     protected $fillable = [
         'career',
-        'status',
+        // 'status',
     ];
 
     // API用 アクセサで記載したこと
-    protected $append = [
-        'volunteer_name.user_name',
+    protected $appends = [
+        'volunteer_name',
     ];
 
     protected $hidden = [
         // 'volunteer_id',
-        // 'created_at',
-        // 'updated_at',
+        'created_at',
+        'updated_at',
+        // 'user_id',
+        // "user_name",
+        // // "user": {
+        // "id",
+        // "name",
+        'application.email',
+        "email_verified_at",
+        "two_factor_confirmed_at",
+        "current_team_id",
+        "profile_photo_path",
+        "created_at",
+        "updated_at",
+        "profile_photo_url",
     ];
 
     // 検索
@@ -37,10 +50,13 @@ class Application extends Model
 
     public function scopeMyApplication(Builder $query)
     {
-        if (Auth::user()->can('volunteer')) {
+        // if (Auth::user()->can('volunteer')) {
+        // if (Auth::user()->volunteer) {
+        $user = User::find(21);
+        if ($user->volunteer) {
             $query->latest()
                 ->with('proposes')
-                ->where('volunteer_id', Auth::user()->volunteer->id);
+                ->where('volunteer_id', $user->volunteer->id);
         } else {
             $query->latest()
                 ->with('proposes')
@@ -48,7 +64,21 @@ class Application extends Model
                     $query->where('user_id', Auth::user()->id);
                 });
         }
+        return $query;
     }
+    //     if (Auth::user()->volunteer) {
+    //         $query->latest()
+    //             ->with('proposes')
+    //             ->where('volunteer_id', $user->volunteer->id);
+    //     } else {
+    //         $query->latest()
+    //             ->with('proposes')
+    //             ->whereHas('proposes', function ($query) {
+    //                 $query->where('user_id', Auth::user()->id);
+    //             });
+    //     }
+    //     return $query;
+    // }
 
     public function volunteer()
     {

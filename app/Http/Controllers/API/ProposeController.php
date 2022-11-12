@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProposeController extends Controller
 {
-        /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -21,18 +21,29 @@ class ProposeController extends Controller
     {
         $propose = new Propose([
             'application_id' => $application->id,
-            'user_id' => Auth::user()->id,
+            'user_id' => 1,
         ]);
         try {
             $propose->save();
         } catch (\Exception $e) {
-            return back()->withInput()
-                ->withErrors('スカウトでエラーが発生しました');
-                // ->withErrors($e->getMessage());
+            logger($e->getMessage());
+            return response(status: 500);
         }
-        return redirect()
-            ->route('applications.show', $application)
-            ->with('notice', 'スカウトしました');
+        return response()->json($propose, 201);
+        // $propose = new Propose([
+        //     'application_id' => $application->id,
+        //     'user_id' => Auth::user()->id,
+        // ]);
+        // try {
+        //     $propose->save();
+        // } catch (\Exception $e) {
+        //     return back()->withInput()
+        //         ->withErrors('スカウトでエラーが発生しました');
+        //         // ->withErrors($e->getMessage());
+        // }
+        // return redirect()
+        //     ->route('applications.show', $application)
+        //     ->with('notice', 'スカウトしました');
     }
 
     /**
@@ -45,11 +56,13 @@ class ProposeController extends Controller
     public function destroy(Application $application, Propose $propose)
     {
         $propose->delete();
-        return redirect()->route('applications.show', [$application, $propose])
-            ->with('notice', 'スカウトを取り消しました');
+        return response()->json($propose, 204);
+        // $propose->delete();
+        // return redirect()->route('applications.show', [$application, $propose])
+        //     ->with('notice', 'スカウトを取り消しました');
     }
 
-/**
+    /**
      *
      * @param  \App\Models\Application $application
      * @param  \App\Models\Propose $propose
@@ -59,8 +72,11 @@ class ProposeController extends Controller
     {
         $propose->status = Propose::STATUS_ACCEPT;
         $propose->save();
-        return redirect()->route('applications.show', $application)
-            ->with('notice', 'スカウトを承認しました');
+        return response()->json($propose, 201);
+        // $propose->status = Propose::STATUS_ACCEPT;
+        // $propose->save();
+        // return redirect()->route('applications.show', $application)
+        //     ->with('notice', 'スカウトを承認しました');
     }
 
     /**
@@ -73,7 +89,10 @@ class ProposeController extends Controller
     {
         $propose->status = Propose::STATUS_REFUSE;
         $propose->save();
-        return redirect()->route('applications.show', $application)
-            ->with('notice', 'スカウトを却下しました');
+        return response()->json($propose, 200);
+        // $propose->status = Propose::STATUS_REFUSE;
+        // $propose->save();
+        // return redirect()->route('applications.show', $application)
+        //     ->with('notice', 'スカウトを却下しました');
     }
 }
