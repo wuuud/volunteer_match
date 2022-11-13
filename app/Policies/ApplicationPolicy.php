@@ -21,6 +21,15 @@ class ApplicationPolicy
         //
     }
 
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+    public function view(?User $user, Application $application)
+    {
+        return true;
+    }
+
 
     /**
      * Determine whether the user can create models.

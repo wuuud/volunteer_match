@@ -62,23 +62,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('npo/register', function () {
     return view('npo.register');
 })->middleware('guest')
-    ->name('npo.register')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->name('npo.register');
 
 
 //６.経歴用 ダッシュボード
 Route::get('/myapplication', [UserController::class, 'myapplication'])
     ->name('myapplication')
-    ->middleware('can:volunteer')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('can:volunteer');
 
 
 //７.メッセージ application
 Route::apiResource('applications.messages', MessageController::class)
     ->only(['store', 'destroy'])
     ->names('api.applications.messages')
-    ->middleware('auth')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('auth');
 // Route::resource('applications.messages', MessageController::class)
 //     ->only(['store', 'destroy'])
 //     ->middleware('auth');
@@ -86,12 +86,12 @@ Route::apiResource('applications.messages', MessageController::class)
 // 8.スカウト
 Route::apiResource('applications', ApplicationController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('can:volunteer')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('can:volunteer');
 Route::apiResource('applications', ApplicationController::class)
     ->only(['show', 'index'])
-    ->middleware('auth')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('auth');
 // Route::resource('applications', ApplicationController::class)
 //     ->only(['create', 'store', 'edit', 'update', 'destroy'])
 //     ->middleware('can:volunteer');
@@ -115,16 +115,16 @@ Route::apiResource('applications', ApplicationController::class)
 // 10. ８スカウトの承認、却下  ボランティア人材
 Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
     ->name('applications.proposes.accept')
-    ->middleware('can:volunteer')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('can:volunteer');
 Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeController::class, 'refuse'])
     ->name('applications.proposes.refuse')
-    ->middleware('can:volunteer')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('can:volunteer');
 Route::apiResource('applications.proposes', ProposeController::class)
     ->only(['store', 'destroy'])
-    ->middleware('can:npo')
-    ->middleware('auth:api');
+    ->middleware('auth:api')
+    ->middleware('can:npo');
 // Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
 //     ->name('applications.proposes.accept')
 //     ->middleware('can:volunteer');

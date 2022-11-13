@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
+    public function __construct()
+    {
+        return $this->authorizeResource(Application::class, 'application');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +41,7 @@ class ApplicationController extends Controller
     {
         $application = new Application($request->all());
         $application->volunteer_id = 1;
+        // $application->volunteer_id = $request->user()->volunteer->id;
         try {
             $application->save();
         } catch (\Exception $e) {
@@ -65,12 +71,22 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        $propose = $application->proposes()->firstWhere('user_id', 21);
-        $proposes = 21 == $application->volunteer->user_id
+        $propose = !isset(Auth::user()->volunteer)
+            ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
+            : '';
+        $proposes = Auth::user()->id == $application->volunteer->user_id
             ? $proposes = $application->proposes()->with('user')->get()
             : [];
         $messages = $application->messages->load('user');
+
         return response()->json(compact('application', 'propose', 'proposes', 'messages'));
+
+        // $propose = $application->proposes()->firstWhere('user_id', 21);
+        // $proposes = 21 == $application->volunteer->user_id
+        //     ? $proposes = $application->proposes()->with('user')->get()
+        //     : [];
+        // $messages = $application->messages->load('user');
+        // return response()->json(compact('application', 'propose', 'proposes', 'messages'));
 
         // $propose = !isset(Auth::user()->volunteer)
         //     ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
