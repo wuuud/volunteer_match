@@ -8,7 +8,7 @@ use App\Http\Controllers\API\MessageController;
 use App\Http\Controllers\API\ProposeController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\API\ChatController;
-use App\Http\Controllers\VolunteerOfferController;
+use App\Http\Controllers\API\VolunteerOfferController;
 // 余裕あれば
 // use App\Http\Controllers\ScoutController;
 /*
@@ -39,13 +39,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // })->middleware('guest')
 //     ->name('welcome');
 //５.ボランティア活動
-// Route::resource('volunteer_offers', VolunteerOfferController::class)
-//     ->only(['create', 'store', 'edit', 'update', 'destroy'])
-//     // authServiceProvider.phpでgateを定義
-//     ->middleware('can:npo');
-// Route::resource('volunteer_offers', VolunteerOfferController::class)
-//     ->only(['show', 'index'])
-//     ->middleware('auth');
+Route::resource('volunteer_offers', VolunteerOfferController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    // ->name('api.volunteer_offers')
+    ->middleware('can:npo')
+    ->middleware('auth:api');
+Route::resource('volunteer_offers', VolunteerOfferController::class)
+    ->only(['show', 'index'])
+    ->middleware('auth:api');
 
 // ３. ダッシュボード
 // Route::middleware([
@@ -61,13 +62,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('npo/register', function () {
     return view('npo.register');
 })->middleware('guest')
-    ->name('npo.register')
+    ->name('api.npo.register')
     ->middleware('auth:api');
 
 
 //６.経歴用 ダッシュボード
 Route::get('/myapplication', [UserController::class, 'myapplication'])
-    ->name('myapplication')
+    ->name('api.myapplication')
     ->middleware('can:volunteer')
     ->middleware('auth:api');
 
@@ -76,8 +77,8 @@ Route::get('/myapplication', [UserController::class, 'myapplication'])
 Route::apiResource('applications.messages', MessageController::class)
     ->only(['store', 'destroy'])
     ->names('api.applications.messages')
-    ->middleware('auth:api')
-    ->middleware('auth');
+    ->middleware('auth')
+    ->middleware('auth:api');
 // Route::resource('applications.messages', MessageController::class)
 //     ->only(['store', 'destroy'])
 //     ->middleware('auth');
@@ -114,11 +115,11 @@ Route::apiResource('applications', ApplicationController::class)
 
 // 10. ８スカウトの承認、却下  ボランティア人材
 Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
-    ->name('applications.proposes.accept')
+    ->name('api.applications.proposes.accept')
     ->middleware('can:volunteer')
     ->middleware('auth:api');
 Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeController::class, 'refuse'])
-    ->name('applications.proposes.refuse')
+    ->name('api.applications.proposes.refuse')
     ->middleware('can:volunteer')
     ->middleware('auth:api');
 Route::apiResource('applications.proposes', ProposeController::class)
@@ -149,11 +150,11 @@ Route::apiResource('proposes.messages', ChatController::class)
 Route::prefix('auth')->middleware('guest')->group(function () {
     // auth/githubにアクセスがあった場合はOAuthControllerのredirectToProviderアクションへルーティング
     Route::get('/github', [OAuthController::class, 'redirectToProvider'])
-        ->name('redirectToProvider')
+        ->name('api.redirectToProvider')
         ->middleware('auth:api');
 
     // auth/github/callbackにアクセスがあった場合はOAuthControllerのoauthCallbackアクションへルーティング
     Route::get('/github/callback', [OAuthController::class, 'oauthCallback'])
-        ->name('oauthCallback')
+        ->name('api.oauthCallback')
         ->middleware('auth:api');
 });
