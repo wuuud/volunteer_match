@@ -39,12 +39,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // })->middleware('guest')
 //     ->name('welcome');
 //５.ボランティア活動
-Route::resource('volunteer_offers', VolunteerOfferController::class)
+Route::apiResource('volunteer_offers', VolunteerOfferController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
-    // ->name('api.volunteer_offers')
+    ->names('api.volunteer_offers')
     ->middleware('can:npo')
     ->middleware('auth:api');
-Route::resource('volunteer_offers', VolunteerOfferController::class)
+Route::apiResource('volunteer_offers', VolunteerOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth:api');
 

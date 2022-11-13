@@ -1,10 +1,11 @@
-http://localhost/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=5
+http://localhost/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=7
 
+# def502000ffc2137af76e4ec974430da8ac2e994c91b0008bd573ada749e4ab84a21769d5813d419f29ce50fbba9183bb20688f9abe6c19d8caa94006de96c2ddf70d6cb62ecbae3df30f8f3465fff6bc7a8325afae4612f8e050434564eeb7489eedef3fc16db5cb86a79ae4126801d5844e1b514836f9d65fc58fc13b1cbae0f943f3be58cbb04af0bbb7bde9d2700b67465ac23655cb46b3716076d2d177590c72073eeea1722ee8201cabb78d8283d9d604a297c79ffeaf5c4f65e870e5b028ab46ece83c2ade9b5f7ca9a7ce8da53382679142f3d77f7e0bdb3bbd132d9539f4c3719437391c2f0fe4ea3142d12ad3046c02b5a3db0fb39d6a3b0f0b076651000ed949340b162a9a03eb1eeb991043bd5f8da96493f603fb5170f349d31951983efbfef105675e4dbea6ecb60b6aabe0d7d8ef72a43e75b45913c6e84b5541a4c0affefa2a32dac3ce45ae8655b
 ### Get Token
 # @prompt code
 POST /oauth/token HTTP/1.1
 Host: {{ host }}
-Content-Type: application/x-www-form-urlencoded
+Content-Type:  volunteer_offers/x-www-form-urlencoded
 
 grant_type=authorization_code
 &client_id={{ client_id }}
@@ -15,6 +16,25 @@ grant_type=authorization_code
 ### user
 GET /api/user HTTP/1.1
 Host: {{ host }}
-Accept: application/json
+Accept:  volunteer_offers/json
 Authorization: Bearer {{ token }}
+
+# API前
+# ### Get Token
+# # @prompt code
+# POST /oauth/token HTTP/1.1
+# Host: {{ host }}
+# Content-Type: application/x-www-form-urlencoded
+
+# grant_type=authorization_code
+# &client_id={{ client_id }}
+# &client_secret={{ client_secret }}
+# &code={{ code }}
+# &redirect_uri=http://localhost
+
+# ### user
+# GET /api/user HTTP/1.1
+# Host: {{ host }}
+# Accept: application/json
+# Authorization: Bearer {{ token }}
 

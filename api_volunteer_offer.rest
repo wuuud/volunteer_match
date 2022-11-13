@@ -24,7 +24,8 @@ Authorization: Bearer {{ token }}
 Content-Type: volunteer_offer/json
 
 {
-    "career": "test_career"
+    "title": "test_title",
+    "description": "test_description",
 }
 
 
@@ -37,7 +38,8 @@ Content-Type: volunteer_offer/json
 Authorization: Bearer {{ token }}
 
 {
-    "career": "update_career"
+    "title": "update_title",
+    "description": "update_description",
 }
 
 
