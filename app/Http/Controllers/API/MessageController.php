@@ -19,6 +19,21 @@ class MessageController extends Controller
      */
     public function store(Request $request, Application $application)
     {
+        // 認証後
+        $message = new Message($request->all());
+        $message->messageable_id = $request->messageable_id;
+        $message->user_id = Auth::user()->id;
+        $message->message = $request->message;
+        try {
+            $message->save();
+        } catch (\Throwable $th) {
+            logger($th->getMessage());
+            return response('', 500);
+        }
+        // $application = Application::find($request->messageable_id);
+        return response()->json($message, 201);
+        
+        // API後
         $message = new Message($request->all());
         $message->messageable_type = 'App\Models\Application';
         $message->messageable_id = $application->id;
@@ -33,6 +48,7 @@ class MessageController extends Controller
         // $application = Application::find($request->messageable_id);
         return response()->json($message, 201);
 
+        // API前
         // $message = new Message($request->all());
         // $message->messageable_id = $request->messageable_id;
         // $message->user_id = Auth::user()->id;
@@ -58,8 +74,8 @@ class MessageController extends Controller
      */
     public function destroy(Application $application, Message $message)
     {
+        // 認証後
         $application = $message->messageable;
-
         // if (Auth::user()->id != $message->user_id) {
         //     return redirect()->route('applications.show', $application)
         //         ->withErrors('自分のメッセージ以外は削除できません');
@@ -72,20 +88,33 @@ class MessageController extends Controller
         }
         return response()->json($application, 204);
 
-        // $application = $message->messageable;
-
+        
+        // API後
+        $application = $message->messageable;
         // if (Auth::user()->id != $message->user_id) {
         //     return redirect()->route('applications.show', $application)
         //         ->withErrors('自分のメッセージ以外は削除できません');
         // }
+        try {
+            $message->delete();
+        } catch (\Exception $th) {
+            logger($th->getMessage());
+            return response(status: 500);
+        }
+        return response()->json($application, 204);
 
+        // API前
+        // $application = $message->messageable;
+        // if (Auth::user()->id != $message->user_id) {
+        //     return redirect()->route('applications.show', $application)
+        //         ->withErrors('自分のメッセージ以外は削除できません');
+        // }
         // try {
         //     $message->delete();
         // } catch (\Exception $e) {
         //     return back()->withInput()
         //         ->withErrors('メッセージ削除処理でエラーが発生しました');
         // }
-
         // return redirect()->route('applications.show', $application)
         //     ->with('notice', ' メッセージを削除しました');
     }

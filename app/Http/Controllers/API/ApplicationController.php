@@ -14,42 +14,52 @@ class ApplicationController extends Controller
     {
         return $this->authorizeResource(Application::class, 'application');
     }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
-        /// 検索
-        $career= $request->career;
+        //API後・認証後
+        $career = $request->career;
         $params = $request->query();
         $applications = Application::search($params)->latest()->paginate(4);
         $applications->appends(compact('career'));
-        // return view('applications.index')->with(compact('applications'));
         return response()->json($applications);
+
+        //API前
+        // $career = $request->career;
+        // $params = $request->query();
+        // $applications = Application::search($params)->latest()->paginate(4);
+        // $applications->appends(compact('career'));
+        // return response()->json($applications);
+        // return view('applications.index')->with(compact('applications'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\ApplicationRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ApplicationRequest $request)
+    public function store(Request $request)
     {
+        
+        // 認証後
         $application = new Application($request->all());
-        $application->volunteer_id = 1;
-        // $application->volunteer_id = $request->user()->volunteer->id;
+        $application->volunteer_id = $request->user()->volunteer->id;
         try {
             $application->save();
         } catch (\Exception $e) {
             logger($e->getMessage());
-            // return back()->withInput()->withErrors($e->getMessage());
             return response(status: 500);
         }
-        return response()->json($application, 201);     //201 created作成しましたよ
+        return response()->json($application, 201); 
+
+        // API後
+        // $application = new Application($request->all());
+        // $application->volunteer_id = 1;
+        // try {
+        //     $application->save();
+        // } catch (\Exception $e) {
+        //     logger($e->getMessage());
+        //     // return back()->withInput()->withErrors($e->getMessage());
+        //     return response(status: 500);
+        // }
+        // return response()->json($application, 201);     //201 created作成しましたよ
+
+        //  API前
         // $application = new Application($request->all());
         // $application->volunteer_id = $request->user()->volunteer->id;
         // try {
@@ -71,6 +81,7 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
+        // 認証後
         $propose = !isset(Auth::user()->volunteer)
             ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
             : '';
@@ -78,9 +89,9 @@ class ApplicationController extends Controller
             ? $proposes = $application->proposes()->with('user')->get()
             : [];
         $messages = $application->messages->load('user');
-
         return response()->json(compact('application', 'propose', 'proposes', 'messages'));
 
+        // API後
         // $propose = $application->proposes()->firstWhere('user_id', 21);
         // $proposes = 21 == $application->volunteer->user_id
         //     ? $proposes = $application->proposes()->with('user')->get()
@@ -88,6 +99,7 @@ class ApplicationController extends Controller
         // $messages = $application->messages->load('user');
         // return response()->json(compact('application', 'propose', 'proposes', 'messages'));
 
+        // API前
         // $propose = !isset(Auth::user()->volunteer)
         //     ? $application->proposes()->firstWhere('user_id', Auth::user()->id)
         //     : '';
@@ -95,7 +107,6 @@ class ApplicationController extends Controller
         //     ? $proposes = $application->proposes()->with('user')->get()
         //     : [];
         // $messages = $application->messages->load('user');
-
         // return view('applications.show')
         //     ->with(compact('application', 'propose', 'proposes', 'messages'));
     }
@@ -109,6 +120,7 @@ class ApplicationController extends Controller
      */
     public function update(ApplicationRequest $request, Application $application)
     {
+        // 認証後
         // if ( $application->user_id = 21 -> cannot('update', $application)) {
         //     return redirect()->route('applications.show', $application)
         //         ->withErrors('自分の経歴等以外は更新できません');
@@ -122,6 +134,21 @@ class ApplicationController extends Controller
         }
         return response()->json($application, 200);
 
+        // API後
+        // if ( $application->user_id = 21 -> cannot('update', $application)) {
+        //     return redirect()->route('applications.show', $application)
+        //         ->withErrors('自分の経歴等以外は更新できません');
+        // }
+        $application->fill($request->all());
+        try {
+            $application->save();
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return response(status: 500);
+        }
+        return response()->json($application, 200);
+
+        // // API前
         // if (Auth::user()->cannot('update', $application)) {
         //     return redirect()->route('applications.show', $application)
         //         ->withErrors('自分の経歴等以外は更新できません');
@@ -145,6 +172,7 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
+        // 認証後
         // if (Auth::user()->cannot('delete', $application)) {
         //     return redirect()->route('$applications.show', $application)
         //         ->withErrors('自分の経歴等以外は削除できません');
@@ -157,6 +185,20 @@ class ApplicationController extends Controller
         }
         return response()->json($application, 204);
 
+        // API後
+        // if (Auth::user()->cannot('delete', $application)) {
+        //     return redirect()->route('$applications.show', $application)
+        //         ->withErrors('自分の経歴等以外は削除できません');
+        // }
+        // try {
+        //     $application->delete();
+        // } catch (\Exception $e) {
+        //     logger($e->getMessage());
+        //     return response(status: 500);
+        // }
+        // return response()->json($application, 204);
+
+        // API前
         // if (Auth::user()->cannot('delete', $application)) {
         //     return redirect()->route('$applications.show', $application)
         //         ->withErrors('自分の経歴等以外は削除できません');

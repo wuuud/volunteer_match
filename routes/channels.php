@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Broadcast;
 | used to check if an authenticated user can listen to the channel.
 |
 */
+
+
 Broadcast::channel('volunteer-match.{propose}', function ($user, $propose_id) {
-    $propose = Propose::find($propose_id);
-    return $user->id === $propose->user_id
-        || $user->id === $propose->applicationr->volunteer->user_id;
+     $propose =Propose::find($propose_id);
+     return $user->id === $propose->user_id
+         || $user->id === $propose->application->volunteer->user_id;
 });

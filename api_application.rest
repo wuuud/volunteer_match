@@ -4,7 +4,8 @@
 GET /api/applications HTTP/1.1
 Host: {{ host }}
 Accept: application/json
-# Authorization: Bearer {{ token }}
+Authorization: Bearer {{ token }}
+Content-Type: application/json
 
 
 ### show
@@ -12,13 +13,14 @@ Accept: application/json
 GET /api/applications/{{ application_id }}?perPage=20&page=1 HTTP/1.1
 Host: {{ host }}
 Accept: application/json
-# Authorization: Bearer {{ token }}
+Authorization: Bearer {{ token }}
 
 
 ### store
 POST /api/applications HTTP/1.1
 Host: {{ host }}
 Accept: application/json
+Authorization: Bearer {{ token }}
 Content-Type: application/json
 
 {
@@ -32,7 +34,7 @@ PATCH /api/applications/{{ application_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: application/json
-# Authorization: Bearer {{ token }}
+Authorization: Bearer {{ token }}
 
 {
     "career": "update_career"
@@ -46,4 +48,4 @@ DELETE /api/applications/{{ application_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: application/json
-# Authorization: Bearer {{ token }}
+Authorization: Bearer {{ token }}

@@ -1,4 +1,4 @@
-import { message } from "laravel-mix/src/Log";
+// import { message } from "laravel-mix/src/Log";
 // 最初の HTML 文書の読み込みと解析が完了したした時点で発生するイベント
 window.addEventListener('DOMContentLoaded', function () {
     const submit = document.getElementById("submit");
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
         message.value = '';
     });
     // 発生したMessageSendイベントを受け取ったら処理する
-    window.Echo.channel('volunteer-match')
+    window.Echo.private(`volunteer-match.${messageable_id}`)
         .listen('MessageSend', (e) => {
             const current_user_id = document.getElementById('current_user_id').value;
             // ISO 8601の時間表記から日本の時間を取得する

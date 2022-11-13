@@ -33,7 +33,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('volunteer', function (User $user) {
-            return !(isset($user->npo));
+            // logger('tetetetetet');
+            return isset($user->volunteer);
+            // return true;
         });
 
         // message

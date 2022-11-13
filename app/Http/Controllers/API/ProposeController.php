@@ -19,6 +19,7 @@ class ProposeController extends Controller
      */
     public function store(Request $request, Application $application)
     {
+        // 認証後
         $propose = new Propose([
             'application_id' => $application->id,
             'user_id' => 1,
@@ -30,6 +31,22 @@ class ProposeController extends Controller
             return response(status: 500);
         }
         return response()->json($propose, 201);
+
+
+        // API後
+        $propose = new Propose([
+            'application_id' => $application->id,
+            'user_id' => 1,
+        ]);
+        try {
+            $propose->save();
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return response(status: 500);
+        }
+        return response()->json($propose, 201);
+
+        // API前
         // $propose = new Propose([
         //     'application_id' => $application->id,
         //     'user_id' => Auth::user()->id,
@@ -55,8 +72,15 @@ class ProposeController extends Controller
      */
     public function destroy(Application $application, Propose $propose)
     {
+        // 認証後
         $propose->delete();
         return response()->json($propose, 204);
+        
+        // API後
+        $propose->delete();
+        return response()->json($propose, 204);
+
+        // API前
         // $propose->delete();
         // return redirect()->route('applications.show', [$application, $propose])
         //     ->with('notice', 'スカウトを取り消しました');
@@ -70,9 +94,17 @@ class ProposeController extends Controller
      */
     public function accept(Application $application, Propose $propose)
     {
-        $propose->status = Propose::STATUS_ACCEPT;
+        // 認証後
+        // $propose->status = Propose::STATUS_ACCEPT;
         $propose->save();
         return response()->json($propose, 201);
+        
+        // API後
+        // $propose->status = Propose::STATUS_ACCEPT;
+        $propose->save();
+        return response()->json($propose, 201);
+
+        // API前
         // $propose->status = Propose::STATUS_ACCEPT;
         // $propose->save();
         // return redirect()->route('applications.show', $application)
@@ -87,9 +119,18 @@ class ProposeController extends Controller
      */
     public function refuse(Application $application, Propose $propose)
     {
-        $propose->status = Propose::STATUS_REFUSE;
+        
+        // 認証後
+        // $propose->status = Propose::STATUS_REFUSE;
         $propose->save();
         return response()->json($propose, 200);
+        
+        // API後
+        // $propose->status = Propose::STATUS_REFUSE;
+        $propose->save();
+        return response()->json($propose, 200);
+        
+        // API前
         // $propose->status = Propose::STATUS_REFUSE;
         // $propose->save();
         // return redirect()->route('applications.show', $application)

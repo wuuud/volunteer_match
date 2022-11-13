@@ -21,24 +21,8 @@ class Application extends Model
         'volunteer_name',
     ];
 
-    protected $hidden = [
-        // 'volunteer_id',
-        'created_at',
-        'updated_at',
-        // 'user_id',
-        // "user_name",
-        // // "user": {
-        // "id",
-        // "name",
-        'application.email',
-        "email_verified_at",
-        "two_factor_confirmed_at",
-        "current_team_id",
-        "profile_photo_path",
-        "created_at",
-        "updated_at",
-        "profile_photo_url",
-    ];
+    // protected $hidden = [
+    // ];
 
     // 検索
     public function scopeSearch(Builder $query, $search)
@@ -50,13 +34,11 @@ class Application extends Model
 
     public function scopeMyApplication(Builder $query)
     {
-        // if (Auth::user()->can('volunteer')) {
-        // if (Auth::user()->volunteer) {
-        $user = User::find(21);
-        if ($user->volunteer) {
+        // 認証後
+        if (Auth::user()->volunteer) {
             $query->latest()
                 ->with('proposes')
-                ->where('volunteer_id', $user->volunteer->id);
+                ->where('volunteer_id', Auth::user()->volunteer->id);
         } else {
             $query->latest()
                 ->with('proposes')
@@ -66,6 +48,24 @@ class Application extends Model
         }
         return $query;
     }
+
+    // API後
+    // $user = User::find(21);
+    // if ($user->volunteer) {
+    //     $query->latest()
+    //         ->with('proposes')
+    //         ->where('volunteer_id', $user->volunteer->id);
+    // } else {
+    //     $query->latest()
+    //         ->with('proposes')
+    //         ->whereHas('proposes', function ($query) {
+    //             $query->where('user_id', Auth::user()->id);
+    //         });
+    // }
+    // return $query;
+    // }
+
+    // API前
     //     if (Auth::user()->volunteer) {
     //         $query->latest()
     //             ->with('proposes')

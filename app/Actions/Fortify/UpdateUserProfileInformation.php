@@ -41,7 +41,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->npo->updateProfilePhoto($input['npo_photo']);
         }
 
-
         if (
             $input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail
@@ -51,13 +50,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'profile' => $input['profile'],
+                // 'profile' => $input['profile'],
             ])->save();
         }
         if (isset($input['npo'])) {
             $user->npo->forceFill([
                 'name' => $input['npo']['name'],
-                'profile' => $input['npo']['profile'],
+                // 'profile' => $input['npo']['profile'],
             ])->save();
         }
     }
@@ -75,7 +74,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => $input['name'],
             'email' => $input['email'],
             'email_verified_at' => null,
-            'profile' => $input['profile'],
+            // 'profile' => $input['profile'],
         ])->save();
 
         $user->sendEmailVerificationNotification();

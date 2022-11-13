@@ -18,6 +18,7 @@ class UserController extends Controller
 
     public function myApplication()
     {
+        // 認証後
         $application = Application::myApplication()->first();
         if (isset($application)) {
             // return redirect()->route('applications.show', $application);
@@ -25,11 +26,22 @@ class UserController extends Controller
         }
         // return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
         return response()->json($application, 204);
+
+        // API後
+        $application = Application::myApplication()->first();
+        if (isset($application)) {
+            // return redirect()->route('applications.show', $application);
+            return response()->json(compact('application'));
+        }
+        // return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
+        return response()->json($application, 204);
+
+        // API前
+        //     $application = Application::myApplication()->first();
+        //     if (isset($application)){
+        //         return redirect()->route('applications.show', $application);
+        //     }
+        //     return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
+        // }
     }
-    //     $application = Application::myApplication()->first();
-    //     if (isset($application)){
-    //         return redirect()->route('applications.show', $application);
-    //     }
-    //     return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
-    // }
 }

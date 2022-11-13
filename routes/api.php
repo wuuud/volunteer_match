@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -9,8 +8,8 @@ use App\Http\Controllers\API\MessageController;
 use App\Http\Controllers\API\ProposeController;
 use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\API\ChatController;
+use App\Http\Controllers\VolunteerOfferController;
 // 余裕あれば
-// use App\Http\Controllers\VolunteerOfferController;
 // use App\Http\Controllers\ScoutController;
 /*
 |--------------------------------------------------------------------------
@@ -62,15 +61,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('npo/register', function () {
     return view('npo.register');
 })->middleware('guest')
-    ->middleware('auth:api')
-    ->name('npo.register');
+    ->name('npo.register')
+    ->middleware('auth:api');
 
 
 //６.経歴用 ダッシュボード
 Route::get('/myapplication', [UserController::class, 'myapplication'])
     ->name('myapplication')
-    ->middleware('auth:api')
-    ->middleware('can:volunteer');
+    ->middleware('can:volunteer')
+    ->middleware('auth:api');
 
 
 //７.メッセージ application
@@ -86,12 +85,13 @@ Route::apiResource('applications.messages', MessageController::class)
 // 8.スカウト
 Route::apiResource('applications', ApplicationController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->names('api.applications')
+    ->middleware('can:volunteer')
     ->middleware('auth:api')
-    ->middleware('can:volunteer');
+    ;
 Route::apiResource('applications', ApplicationController::class)
     ->only(['show', 'index'])
-    ->middleware('auth:api')
-    ->middleware('auth');
+    ->middleware('auth:api');
 // Route::resource('applications', ApplicationController::class)
 //     ->only(['create', 'store', 'edit', 'update', 'destroy'])
 //     ->middleware('can:volunteer');
@@ -115,16 +115,16 @@ Route::apiResource('applications', ApplicationController::class)
 // 10. ８スカウトの承認、却下  ボランティア人材
 Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
     ->name('applications.proposes.accept')
-    ->middleware('auth:api')
-    ->middleware('can:volunteer');
+    ->middleware('can:volunteer')
+    ->middleware('auth:api');
 Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeController::class, 'refuse'])
     ->name('applications.proposes.refuse')
-    ->middleware('auth:api')
-    ->middleware('can:volunteer');
+    ->middleware('can:volunteer')
+    ->middleware('auth:api');
 Route::apiResource('applications.proposes', ProposeController::class)
     ->only(['store', 'destroy'])
-    ->middleware('auth:api')
-    ->middleware('can:npo');
+    ->middleware('can:npo')
+    ->middleware('auth:api');
 // Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
 //     ->name('applications.proposes.accept')
 //     ->middleware('can:volunteer');
@@ -139,8 +139,7 @@ Route::apiResource('applications.proposes', ProposeController::class)
 // 11.リアルタイムチャット
 Route::apiResource('proposes.messages', ChatController::class)
     ->only(['index', 'store', 'destroy'])
-    ->middleware('auth:api')
-    ->middleware('auth');
+    ->middleware('auth:api');
 // Route::resource('proposes.messages', ChatController::class)
 //     ->only(['index', 'store', 'destroy'])
 //     ->middleware('auth');

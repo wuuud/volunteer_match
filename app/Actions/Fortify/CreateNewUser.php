@@ -29,8 +29,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             'npo_name' => ['string', 'max:255', 'unique:npos,name'],
-            
-
         ])->validate();
 
         DB::beginTransaction();
