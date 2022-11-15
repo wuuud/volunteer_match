@@ -18,6 +18,7 @@ class Npo extends Model
 
     protected $appends = [
         'profile_photo_url',
+        'user_name',
     ];
 
     // protected $hidden = [
@@ -29,12 +30,17 @@ class Npo extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 
     public function volunteerOffers()
     {
         return $this->hasMany(VolunteerOffer::class);
+    }
+
+    public function getUserNameAttribute()
+    {
+        return $this->user->name;
     }
 }

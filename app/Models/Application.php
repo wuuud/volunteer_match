@@ -13,12 +13,12 @@ class Application extends Model
 
     protected $fillable = [
         'career',
-        // 'status',
+        'status',
     ];
 
     // API用 アクセサで記載したこと
     protected $appends = [
-        'volunteer_name',
+        // 'volunteer_name',
     ];
 
     // protected $hidden = [
@@ -94,8 +94,8 @@ class Application extends Model
         return $this->morphMany(Message::class, 'messageable');
     }
 
-    public function getVolunteerNameAttribute()
-    {
-        return $this->volunteer->user->name;
-    }
+    // public function getVolunteerNameAttribute()
+    // {
+    //     return $this->volunteer->user->name;
+    // }
 }

@@ -41,7 +41,7 @@
                 <a href="{{ url('auth/github') }}" class="block mr-5 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-full">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                {{-- <a href="{{ url('auth/google') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                {{-- <a href="{{ url('auth/google') }}" class="bg-red-500 hover:bg--700 text-white font-bold py-2 px-4 rounded-full">
                     <i class="fab fa-google"></i> Google
                 </a> --}}
             </div>

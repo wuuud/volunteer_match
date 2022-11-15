@@ -3,29 +3,30 @@
 ### index
 GET /api/volunteer_offers HTTP/1.1
 Host: {{ host }}
-Accept: volunteer_offer/json
+Accept: application/json
 Authorization: Bearer {{ token }}
-Content-Type: volunteer_offer/json
+Content-Type: application/json
 
 
 ### show
 # @prompt volunteer_offer_id
 GET /api/volunteer_offers/{{ volunteer_offer_id }}?perPage=20&page=1 HTTP/1.1
 Host: {{ host }}
-Accept: volunteer_offer/json
+Accept: application/json
 Authorization: Bearer {{ token }}
 
 
 ### store
 POST /api/volunteer_offers HTTP/1.1
 Host: {{ host }}
-Accept: volunteer_offer/json
+Accept: application/json
 Authorization: Bearer {{ token }}
-Content-Type: volunteer_offer/json
+Content-Type: application/json
 
 {
     "title": "test_title",
     "description": "test_description",
+    "start_date": "2022-11-10"
 }
 
 
@@ -33,13 +34,14 @@ Content-Type: volunteer_offer/json
 # @prompt volunteer_offer_id
 PATCH /api/volunteer_offers/{{ volunteer_offer_id }} HTTP/1.1
 Host: {{ host }}
-Accept: volunteer_offer/json
-Content-Type: volunteer_offer/json
+Accept: application/json
+Content-Type: application/json
 Authorization: Bearer {{ token }}
 
 {
     "title": "update_title",
-    "description": "update_description",
+    "description": "test_description",
+    "start_date": "2022-11-10"
 }
 
 
@@ -48,6 +50,6 @@ Authorization: Bearer {{ token }}
 # @prompt volunteer_offer_id
 DELETE /api/volunteer_offers/{{ volunteer_offer_id }} HTTP/1.1
 Host: {{ host }}
-Accept: volunteer_offer/json
-Content-Type: volunteer_offer/json
+Accept: application/json
+Content-Type: application/json
 Authorization: Bearer {{ token }}

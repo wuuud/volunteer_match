@@ -26,6 +26,14 @@ class VolunteerOffer extends Model
         'is_published',
     ];
 
+    protected $appends = [
+        'npo_name',
+    ];
+    protected $hidden = [
+        'npo',
+    ];
+
+
     public function scopePublished(Builder $query)
     {
         $query->where('is_published', true)
@@ -66,5 +74,10 @@ class VolunteerOffer extends Model
     public function scouts()
     {
         return $this->hasMany(Scout::class);
+    }
+
+    public function getNpoNameAttribute()
+    {
+        return $this->npo->name;
     }
 }

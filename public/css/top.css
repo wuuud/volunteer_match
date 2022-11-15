@@ -2,7 +2,11 @@
 
 .bg-image {
     background-image: url(/images/top.png);
-    background-position: center center;
+    /* background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-size: contain; */
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

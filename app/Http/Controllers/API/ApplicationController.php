@@ -135,18 +135,14 @@ class ApplicationController extends Controller
         return response()->json($application, 200);
 
         // API後
-        // if ( $application->user_id = 21 -> cannot('update', $application)) {
-        //     return redirect()->route('applications.show', $application)
-        //         ->withErrors('自分の経歴等以外は更新できません');
+        // $application->fill($request->all());
+        // try {
+        //     $application->save();
+        // } catch (\Exception $e) {
+        //     logger($e->getMessage());
+        //     return response(status: 500);
         // }
-        $application->fill($request->all());
-        try {
-            $application->save();
-        } catch (\Exception $e) {
-            logger($e->getMessage());
-            return response(status: 500);
-        }
-        return response()->json($application, 200);
+        // return response()->json($application, 200);
 
         // // API前
         // if (Auth::user()->cannot('update', $application)) {

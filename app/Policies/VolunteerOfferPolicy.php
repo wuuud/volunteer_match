@@ -20,6 +20,17 @@ class VolunteerOfferPolicy
         //
     }
 
+    public function viewAny(?User $user)
+    {
+        return true;
+    }
+
+    // 省略
+    public function view(?User $user, VolunteerOffer $volunteer_offer)
+    {
+        return true;
+    }
+
     /**
      * Determine whether the user can create models.
      *

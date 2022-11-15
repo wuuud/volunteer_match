@@ -1428,6 +1428,10 @@ select {
 .w-2\/5 {
   width: 40%;
 }
+.w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
 .w-4\/5 {
   width: 80%;
 }
@@ -1848,9 +1852,14 @@ select {
   --tw-gradient-to: rgb(99 102 241 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-pink-500 {
-  --tw-gradient-from: #ec4899;
-  --tw-gradient-to: rgb(236 72 153 / 0);
+.from-orange-400 {
+  --tw-gradient-from: #fb923c;
+  --tw-gradient-to: rgb(251 146 60 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-emerald-500 {
+  --tw-gradient-from: #10b981;
+  --tw-gradient-to: rgb(16 185 129 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .from-orange-300 {
@@ -1863,14 +1872,9 @@ select {
   --tw-gradient-to: rgb(110 231 183 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-orange-400 {
-  --tw-gradient-from: #fb923c;
-  --tw-gradient-to: rgb(251 146 60 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.from-emerald-500 {
-  --tw-gradient-from: #10b981;
-  --tw-gradient-to: rgb(16 185 129 / 0);
+.from-pink-500 {
+  --tw-gradient-from: #ec4899;
+  --tw-gradient-to: rgb(236 72 153 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .from-amber-200 {
@@ -1886,17 +1890,17 @@ select {
 .to-blue-600 {
   --tw-gradient-to: #2563eb;
 }
-.to-purple-600 {
-  --tw-gradient-to: #9333ea;
-}
-.to-orange-600 {
-  --tw-gradient-to: #ea580c;
+.to-orange-500 {
+  --tw-gradient-to: #f97316;
 }
 .to-emerald-600 {
   --tw-gradient-to: #059669;
 }
-.to-orange-500 {
-  --tw-gradient-to: #f97316;
+.to-orange-600 {
+  --tw-gradient-to: #ea580c;
+}
+.to-purple-600 {
+  --tw-gradient-to: #9333ea;
 }
 .to-black {
   --tw-gradient-to: #000;
@@ -1931,6 +1935,9 @@ select {
 }
 .p-4 {
   padding: 1rem;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-10 {
   padding: 2.5rem;
@@ -2402,31 +2409,12 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(5 150 105 / var(--tw-bg-opacity));
 }
-.hover\:bg-red-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
-}
 .hover\:bg-gradient-to-l:hover {
   background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }
 .hover\:from-blue-500:hover {
   --tw-gradient-from: #3b82f6;
   --tw-gradient-to: rgb(59 130 246 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.hover\:from-purple-500:hover {
-  --tw-gradient-from: #a855f7;
-  --tw-gradient-to: rgb(168 85 247 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.hover\:from-orange-600:hover {
-  --tw-gradient-from: #ea580c;
-  --tw-gradient-to: rgb(234 88 12 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.hover\:from-emerald-600:hover {
-  --tw-gradient-from: #059669;
-  --tw-gradient-to: rgb(5 150 105 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .hover\:from-orange-500:hover {
@@ -2439,11 +2427,29 @@ select {
   --tw-gradient-to: rgb(16 185 129 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.hover\:from-orange-600:hover {
+  --tw-gradient-from: #ea580c;
+  --tw-gradient-to: rgb(234 88 12 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.hover\:from-emerald-600:hover {
+  --tw-gradient-from: #059669;
+  --tw-gradient-to: rgb(5 150 105 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.hover\:from-purple-500:hover {
+  --tw-gradient-from: #a855f7;
+  --tw-gradient-to: rgb(168 85 247 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .hover\:to-indigo-600:hover {
   --tw-gradient-to: #4f46e5;
 }
-.hover\:to-pink-600:hover {
-  --tw-gradient-to: #db2777;
+.hover\:to-orange-400:hover {
+  --tw-gradient-to: #fb923c;
+}
+.hover\:to-emerald-600:hover {
+  --tw-gradient-to: #059669;
 }
 .hover\:to-orange-300:hover {
   --tw-gradient-to: #fdba74;
@@ -2451,17 +2457,14 @@ select {
 .hover\:to-emerald-400:hover {
   --tw-gradient-to: #34d399;
 }
-.hover\:to-emerald-600:hover {
-  --tw-gradient-to: #059669;
+.hover\:to-pink-600:hover {
+  --tw-gradient-to: #db2777;
 }
 .hover\:to-emerald-800:hover {
   --tw-gradient-to: #065f46;
 }
 .hover\:to-orange-800:hover {
   --tw-gradient-to: #9a3412;
-}
-.hover\:to-orange-400:hover {
-  --tw-gradient-to: #fb923c;
 }
 .hover\:font-bold:hover {
   font-weight: 700;

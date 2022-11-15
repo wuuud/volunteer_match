@@ -1,6 +1,9 @@
 <x-app-layout>
+        <img class="w-max p-0" src="{{ asset('/images/index.png') }}" alt="">
     <div class="container mx-auto w-3/5 my-8 px-4 py-4">
-        <div class="w-full">
+        <div class="w-maz">
+        {{-- <div class="shrink-0 flex items-center"> --}}
+        </div>
             @foreach ($volunteer_offers as $volunteer_offer)
                 <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
                     <div class="mt-4">
@@ -37,10 +40,11 @@
                 </div>
                 <hr>
             @endforeach
-            <div class="block mt-3">
-                {{ $volunteer_offers->links() }}
-            </div>
         </div>
+        <div class="block mt-3">
+            {{ $volunteer_offers->links() }}
+        </div>
+    </div>
     </div>
     </div>
 </x-app-layout>
