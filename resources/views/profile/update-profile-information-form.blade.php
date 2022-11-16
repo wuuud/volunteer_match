@@ -4,12 +4,12 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{-- {{ __('Update your account\'s profile information and email address.') }} --}}
     </x-slot>
 
     <x-slot name="form">
         <!--個人写真 volunteerのみ -->
-        {{-- @can('volunteer') --}}
+        @can('volunteer')
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
@@ -51,7 +51,7 @@
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
         @endif
-        {{-- @endcan --}}
+        @endcan
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">

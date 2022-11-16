@@ -1,0 +1,6 @@
+
+
+
+
+
+DB_CONNECTION=pgsql DB_USERNAME=ioqzxjrmkqraov DB_PASSWORD=5233ef42134e505ed7eab41143f2734ec58c76cdc4cef96e0f1a65b1f8684fc5 DB_HOST=ec2-34-194-40-194.compute-1.amazonaws.com DB_PORT=5432 DB_DATABASE=d5qge0ilb9np9f

@@ -1,6 +1,6 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('NPO/NGOプロフィール情報の更新') }}
+        {{ __('NPO/NGOアカウントの更新') }}
     </x-slot>
 
     <x-slot name="description">

@@ -20,8 +20,11 @@ http://localhost/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response
 # Accept:  application/json
 # Authorization: Bearer {{ token }}
 
-https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=7
 
+# heroku用
+https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=2
+
+https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http://localhost&response_type=code&client_id=6
 
 # user_id = 21
 # API前

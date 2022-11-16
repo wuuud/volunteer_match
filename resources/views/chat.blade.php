@@ -15,11 +15,11 @@
                                 <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
                             </svg>
                         </span>
-                        {{-- 企業アカウントの画像 --}}
+                        {{-- ボランティアアカウントの画像 --}}
                         <img src="{{ $propose->application->volunteer->user->profile_photo_url }}" alt=""
                             class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
                     </div>
-                    {{-- 企業アカウントの名前 --}}
+                    {{-- ボランティアアカウントの名前 --}}
                     <div class="flex flex-col leading-tight">
                         <div class="text-2xl mt-1 flex items-center">
                             <span class="text-gray-700 mr-3">{{ $propose->application->volunteer->user->name }}</span>
@@ -36,14 +36,14 @@
                                 <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
                             </svg>
                         </span>
-                        {{-- ユーザーアカウントの画像 --}}
-                        <img src="{{ $propose->application->volunteer->user->profile_photo_url }}" alt=""
+                        {{-- NPOアカウントの画像 --}}
+                        <img src="{{ $propose->user->npo->profile_photo_url }}" alt=""
                             class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
                     </div>
-                    {{-- ユーザーアカウントの名前 --}}
+                    {{--  NPOアカウントの名前 --}}
                     <div class="flex flex-col leading-tight">
                         <div class="text-2xl mt-1 flex items-center">
-                            <span class="text-gray-700 mr-3">{{ $propose->user->name }}</span>
+                            <span class="text-gray-700 mr-3">{{ $propose->user->npo->name }}</span>
                         </div>
                         {{-- <span class="text-lg text-gray-600">Junior Developer</span> --}}
                     </div>

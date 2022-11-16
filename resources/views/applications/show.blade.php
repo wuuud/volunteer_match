@@ -15,11 +15,13 @@
 
             <div class="flex justify-between text-sm">
                 <p class="text-gray-700 text-sm">経歴や希望する活動等</p>
-                <div>
+                <div class="font-bold">
                     <span>更新日 : {{ $application->created_at->format('Y-m-d') }}</span>
                 </div>
             </div>
-            <p class="font-bold border-2 border-orange-200 rounded-lg rows=8">{!! nl2br(e($application->career)) !!}</p>
+            <textarea name="career" rows="10"
+                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-orange-600 w-full py-2 px-3">{!! nl2br(e($application->career)) !!}
+            </textarea>
         </article>
         {{-- 13.スカウト store,destory npo画面で見える --}}
         <div class="flex flex-col sm:flex-row items-center sm:justify-end text-center my-4">
@@ -66,7 +68,7 @@
         </div>
 
         {{-- メッセージ --}}
-        <hr>
+        
         <div id="messages"
             class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
             @foreach ($messages as $message)
@@ -120,7 +122,7 @@
         {{-- テキスト１５  スカウト承認・却下 --}}
         @if (!empty($proposes))
             <hr>
-            <h2 class="flex justify-center font-bold text-lg my-4">提案を受けたNPO・NGO一覧</h2>
+            <h2 class="flex justify-center font-bold text-lg my-4">スカウトを受けたNPO・NGO一覧</h2>
             <div class="">
                 <form method="post">
                     @csrf
@@ -129,7 +131,7 @@
                         <thead>
                             <tr class="text-gray-700 ">
                                 <th class="w-1/5 px-4 py-2">NPO/NGO名</th>
-                                <th class="w-1/5 px-4 py-2">提案日</th>
+                                <th class="w-1/5 px-4 py-2">スカウト日</th>
                                 <th class="w-1/5 px-4 py-2">ステータス</th>
                                 <th class="w-2/5 px-4 py-2"></th>
                             </tr>
@@ -137,11 +139,15 @@
                         <tbody>
                             @foreach ($proposes as $propose)
                                 <tr>
-                                    <td>{{ $propose->user->npo->name }}</td>
+                                    <td>
+                                        {{-- <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}"> --}}
+                                            {{ $propose->user->npo->name }}
+                                        {{-- </a> --}}
+                                    </td>
                                     <td>{{ $propose->created_at->format('Y-m-d') }}</td>
                                     <td>{{ $propose->status_value }}</td>
                                     <td>
-                                        <div class="flex flex-col sm:flex-row items-center sm:justify-end text-center">
+                                        <div class="flex flex-col sm:flex-row items-centerimage.png sm:justify-end text-center">
                                             @if (App\Models\Propose::STATUS_PROPOSE == $propose->status)
                                                 <input type="submit" value="承認"
                                                     formaction="{{ route('applications.proposes.accept', [$application, $propose]) }}"

@@ -1,12 +1,12 @@
 <x-app-layout>
-    <img class="w-max p-0 height-1/2" src="{{ asset('/images/index.png') }}" alt="">
-    <div class="container mx-auto displya:flex w-1/2 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
-        <div class="w-maz">
-            {{-- <div class="shrink-0 flex items-center"> --}}
-        </div>
+    <img class="w-max p-0 height-1/4" src="{{ asset('/images/index.png') }}" alt="">
+    <div class="container mx-auto md:w-1/2 displya:flex w-1/2 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
+        {{-- <div class="w-maz">
+            <div class="shrink-0 flex items-center"> 
+        </div> --}}
         @foreach ($volunteer_offers as $volunteer_offer)
-            <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
-                <div class="mt-4">
+            <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500 bbb">
+                <div class="mt-4 aaa">
                     <div class="mt-4 flex items-center space-x-4 py-6">
                         <div>
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
