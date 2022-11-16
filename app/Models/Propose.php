@@ -27,7 +27,7 @@ class Propose extends Model
 
     // API
     protected $appends = [
-        // 'application_id',
+        'volunteer_name',
         // 'status',
     ];
     protected $hidden = [
@@ -58,5 +58,9 @@ class Propose extends Model
     public function messages()
     {
         return $this->morphMany(Message::class, 'messageable');
+    }
+    public function getVolunteerNameAttribute()
+    {
+        return $this->application->volunteer->user->name;
     }
 }

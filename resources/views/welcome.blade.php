@@ -402,8 +402,8 @@
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 
 <body class="antialiased">

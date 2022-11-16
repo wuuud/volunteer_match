@@ -1,5 +1,5 @@
 @host = localhost
-## myApplication
+## myApplication showみたいな
 # @prompt application_id
 GET /api/myapplication HTTP/1.1
 Host: {{ host }}

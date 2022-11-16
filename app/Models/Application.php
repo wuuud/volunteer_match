@@ -18,11 +18,12 @@ class Application extends Model
 
     // API用 アクセサで記載したこと
     protected $appends = [
-        // 'volunteer_name',
+        'volunteer_name',
     ];
 
-    // protected $hidden = [
-    // ];
+    protected $hidden = [
+        'volunteer',
+    ];
 
     // 検索
     public function scopeSearch(Builder $query, $search)
@@ -94,8 +95,8 @@ class Application extends Model
         return $this->morphMany(Message::class, 'messageable');
     }
 
-    // public function getVolunteerNameAttribute()
-    // {
-    //     return $this->volunteer->user->name;
-    // }
+    public function getVolunteerNameAttribute()
+    {
+        return $this->volunteer->user->name;
+    }
 }

@@ -14,7 +14,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="/">
-                        {{ __('全てのボランティア') }}
+                        {{ __('全ての求人') }}
                     </x-jet-nav-link>
                 </div>
 
@@ -23,7 +23,7 @@
                 @can('npo')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('作成したボランティア') }}
+                            {{ __('作成した求人') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
@@ -47,13 +47,13 @@
                 @endcan
 
                 <!-- 追加  支払画面  Navigation Links -->
-                @can('auth')
+                {{-- @can('auth')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('proposes_dashboard') }}">
                             {{ __('支払い') }}
                         </x-jet-nav-link>
                     </div>
-                @endcan
+                @endcan --}}
             </div>
 
 
