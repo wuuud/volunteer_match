@@ -28,6 +28,7 @@ class Propose extends Model
     // API
     protected $appends = [
         'volunteer_name',
+        'Volunteer_status_accept_name'
         // 'status',
     ];
     protected $hidden = [
@@ -61,6 +62,12 @@ class Propose extends Model
     }
     public function getVolunteerNameAttribute()
     {
+        return $this->application->volunteer->user->name;
+    }
+
+    public function getVolunteerStatusAcceptNameAttribute()
+    {
+        $propose->status = Propose::STATUS_ACCEPT;
         return $this->application->volunteer->user->name;
     }
 }

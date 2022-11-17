@@ -11,7 +11,7 @@ Content-Type: application/json
 # @prompt application_id
 GET /api/applications/{{ application_id }}?perPage=20&page=1 HTTP/1.1
 Host: {{ host }}
-Accept: application/json
+Accept: application/json111111
 Authorization: Bearer {{ token }}
 
 
