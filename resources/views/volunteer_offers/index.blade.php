@@ -4,14 +4,7 @@
         {{-- <div class="w-maz">
             <div class="shrink-0 flex items-center"> 
         </div> --}}
-<<<<<<< Updated upstream
         @foreach ($volunteer_offers as $volunteer_offer)
-=======
-        <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
-        <div class="flex flex-wrap -mx-1 lg:-mx-4 mb-4">
-        @foreach ($volunteer_offers as $volunteer_offer)
-        <article class="w-full px-4 md:w-1/2 text-xl text-gray-800 leading-normal">
->>>>>>> Stashed changes
             <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500 bbb">
                 <div class="mt-4 aaa">
                     <div class="mt-4 flex items-center space-x-4 py-6">

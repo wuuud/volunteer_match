@@ -77,7 +77,7 @@ Route::get('/myapplication', [UserController::class, 'myapplication'])
 Route::apiResource('applications.messages', MessageController::class)
     ->only(['store', 'destroy'])
     ->names('api.applications.messages')
-    ->middleware('auth')
+    // ->middleware('auth')
     ->middleware('auth:api');
 // Route::resource('applications.messages', MessageController::class)
 //     ->only(['store', 'destroy'])
