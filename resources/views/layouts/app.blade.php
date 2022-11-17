@@ -13,6 +13,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<<<<<<< Updated upstream
+=======
+        {{-- <link rel="stylesheet" href="{{ asset('css/index.css') }}"> --}}
+>>>>>>> Stashed changes
 
         @livewireStyles
 

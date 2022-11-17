@@ -21,12 +21,21 @@ http://localhost/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response
 # Authorization: Bearer {{ token }}
 
 
+<<<<<<< Updated upstream
 # heroku用
 https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=2
 
 https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http://localhost&response_type=code&client_id=6
 
 # user_id = 21
+=======
+# # heroku用
+# https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%0A&response_type=code&client_id=2
+
+https://volunteer-match-22.herokuapp.com/oauth/authorize?redirect_uri=http://localhost&response_type=code&client_id=10
+
+# user_id = 7
+>>>>>>> Stashed changes
 # API前
 ### Get Token
 # @prompt code

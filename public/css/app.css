@@ -1220,6 +1220,10 @@ select {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+.-mx-1 {
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1428,12 +1432,12 @@ select {
 .w-2\/5 {
   width: 40%;
 }
-.w-4\/5 {
-  width: 80%;
-}
 .w-max {
   width: -moz-max-content;
   width: max-content;
+}
+.w-4\/5 {
+  width: 80%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1875,11 +1879,6 @@ select {
   --tw-gradient-to: rgb(110 231 183 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-amber-200 {
-  --tw-gradient-from: #fde68a;
-  --tw-gradient-to: rgb(253 230 138 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
 .from-pink-500 {
   --tw-gradient-from: #ec4899;
   --tw-gradient-to: rgb(236 72 153 / 0);
@@ -1888,6 +1887,11 @@ select {
 .from-emerald-400 {
   --tw-gradient-from: #34d399;
   --tw-gradient-to: rgb(52 211 153 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-amber-200 {
+  --tw-gradient-from: #fde68a;
+  --tw-gradient-to: rgb(253 230 138 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .from-orange-500 {
@@ -1907,11 +1911,11 @@ select {
 .to-orange-600 {
   --tw-gradient-to: #ea580c;
 }
-.to-black {
-  --tw-gradient-to: #000;
-}
 .to-purple-600 {
   --tw-gradient-to: #9333ea;
+}
+.to-black {
+  --tw-gradient-to: #000;
 }
 .to-emerald-800 {
   --tw-gradient-to: #065f46;
@@ -1941,14 +1945,14 @@ select {
 .p-3 {
   padding: 0.75rem;
 }
-.p-10 {
-  padding: 2.5rem;
-}
 .p-4 {
   padding: 1rem;
 }
 .p-0 {
   padding: 0px;
+}
+.p-10 {
+  padding: 2.5rem;
 }
 .p-8 {
   padding: 2rem;
@@ -2145,6 +2149,9 @@ select {
 }
 .leading-10 {
   line-height: 2.5rem;
+}
+.leading-normal {
+  line-height: 1.5;
 }
 .tracking-widest {
   letter-spacing: 0.1em;
@@ -2969,6 +2976,14 @@ select {
     width: 80%;
   }
 
+  .md\:w-1\/5 {
+    width: 20%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:w-2\/5 {
     width: 40%;
   }
@@ -3021,6 +3036,11 @@ select {
     padding: 2.5rem;
   }
 
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -3030,6 +3050,11 @@ select {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:-mx-4 {
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
 
   .lg\:w-3\/4 {
