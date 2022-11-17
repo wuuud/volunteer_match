@@ -1,17 +1,19 @@
-@host = localhost
+
 ### index
 # @prompt propose_id
 GET /api/proposes/{{ propose_id }}/messages HTTP/1.1
 Host: {{ host }}
-# Authorization: Bearer {{ token }}
+Accept: application/json
+Authorization: Bearer {{ token }}
 Content-Type: application/json
 
 ### store
 # @prompt propose_id
 POST /api/proposes/{{ propose_id }}/messages HTTP/1.1
 Host: {{ host }}
-Accept: propose/json
-Content-Type: propose/json
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{ token }}
 
 {
     "message": "test_chat_message"
@@ -25,3 +27,4 @@ DELETE /api/proposes/{{ propose_id }}/messages/{{ message_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{ token }}

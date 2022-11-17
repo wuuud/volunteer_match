@@ -21,7 +21,7 @@ class MessageController extends Controller
     {
         // 認証後
         $message = new Message($request->all());
-        $message->messageable_id = $request->messageable_id;
+        $message->messageable_id = $application->id;
         $message->messageable_type = 'App\Models\Application';
         $message->user_id = Auth::user()->id;
         $message->message = $request->message;

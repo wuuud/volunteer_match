@@ -124,8 +124,8 @@ Route::patch('/applications/{application}/proposes/{propose}/refuse', [ProposeCo
     ->middleware('auth:api');
 Route::apiResource('applications.proposes', ProposeController::class)
     ->only(['store', 'destroy'])
-    ->middleware('can:npo')
-    ->middleware('auth:api');
+    ->names('api.applications.proposes')
+    ->middleware(['auth:api','can:npo']);
 // Route::patch('/applications/{application}/proposes/{propose}/accept', [ProposeController::class, 'accept'])
 //     ->name('applications.proposes.accept')
 //     ->middleware('can:volunteer');

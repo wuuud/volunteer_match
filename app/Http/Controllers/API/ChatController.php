@@ -36,6 +36,7 @@ class ChatController extends Controller
         Gate::authorize('message', $propose);
         $message = new Message($request->all());
         $message->messageable_type = 'App\Models\Propose';
+        $message->messageable_id = $propose->id;
         $message->user_id = Auth::id();
         $message->save();
         event(new MessageSend($message));

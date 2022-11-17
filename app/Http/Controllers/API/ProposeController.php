@@ -22,7 +22,7 @@ class ProposeController extends Controller
         // 認証後
         $propose = new Propose([
             'application_id' => $application->id,
-            'user_id' => 1,
+            'user_id' => $request->user()->id,
         ]);
         try {
             $propose->save();
@@ -95,7 +95,7 @@ class ProposeController extends Controller
     public function accept(Application $application, Propose $propose)
     {
         // 認証後
-        // $propose->status = Propose::STATUS_ACCEPT;
+        $propose->status = Propose::STATUS_ACCEPT;
         $propose->save();
         return response()->json($propose, 201);
         

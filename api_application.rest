@@ -8,8 +8,7 @@ Content-Type: application/json
 
 
 ### show
-# @prom
-pt application_id
+# @prompt application_id
 GET /api/applications/{{ application_id }}?perPage=20&page=1 HTTP/1.1
 Host: {{ host }}
 Accept: application/json
