@@ -101,7 +101,6 @@ class Application extends Model
     }
 
     // public function getVolunteerNameAttribute()
-    // {
-    //     return $this->volunteer->user->name;
+    // {   return $this->volunteer->user->name;
     // }
 }
