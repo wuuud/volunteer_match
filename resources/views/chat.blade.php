@@ -37,6 +37,7 @@
                             </svg>
                         </span>
                         {{-- NPOアカウントの画像 --}}
+                        {{-- <img src="{{ $propose->application->volunteer->user->profile_photo_url }}" alt="" --}}
                         <img src="{{ $propose->user->npo->profile_photo_url }}" alt=""
                             class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
                     </div>

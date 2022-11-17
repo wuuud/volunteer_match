@@ -8,7 +8,8 @@ Content-Type: application/json
 
 
 ### show
-# @prompt application_id
+# @prom
+pt application_id
 GET /api/applications/{{ application_id }}?perPage=20&page=1 HTTP/1.1
 Host: {{ host }}
 Accept: application/json
@@ -47,4 +48,4 @@ DELETE /api/applications/{{ application_id }} HTTP/1.1
 Host: {{ host }}
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{ token }}
+Authorization: Bearer {{ 1token }}

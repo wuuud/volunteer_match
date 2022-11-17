@@ -26,7 +26,7 @@ Content-Type: application/json
 {
     "title": "test_title",
     "description": "test_description",
-    "start_date": "2022-11-10"
+    "start_date": "2022-11-10"1
 }
 
 
