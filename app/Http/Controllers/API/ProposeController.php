@@ -121,7 +121,7 @@ class ProposeController extends Controller
     {
         
         // 認証後
-        // $propose->status = Propose::STATUS_REFUSE;
+        $propose->status = Propose::STATUS_REFUSE;
         $propose->save();
         return response()->json($propose, 200);
         
