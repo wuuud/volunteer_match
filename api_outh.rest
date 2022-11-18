@@ -41,6 +41,19 @@ grant_type=authorization_code
 &code={{ code }}
 &redirect_uri=http://localhost
 
+# swift様
+### Get Token
+# @prompt code
+POST /oauth/token HTTP/1.1
+Host: {{ host }}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&client_id=11
+&client_secret=JDQmkezPcSkMEiB5QsI3kuZZiLHgkzhRDMgt4ApQ
+&code={{ code }}
+&redirect_uri=volunteer_match_oauth
+
 ### user
 GET /api/user HTTP/1.1
 Host: {{ host }}
