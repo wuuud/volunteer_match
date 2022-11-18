@@ -1,9 +1,6 @@
 <x-app-layout>
-    <img class="w-max p-0" src="{{ asset('/images/index.png') }}" alt="" height="60">
+    <img class="w-max p-0" src="{{ asset('/images/volunteerOffer_index.png') }}" alt="" height="60">
     <div class="container mx-auto md:w-1/2 displya:flex w-1/2 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
-        {{-- <div class="w-maz">
-            <div class="shrink-0 flex items-center"> 
-        </div> --}}
         @foreach ($volunteer_offers as $volunteer_offer)
             <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
                 <div class="mt-4">

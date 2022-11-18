@@ -54,6 +54,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'npo_name'
     ];
 
     // SNS認証用
@@ -83,5 +84,10 @@ class User extends Authenticatable
     public function proposes()
     {
         return $this->hasMany(Propose::class);
+    }
+
+    public function getNpoNameAttribute()
+    {
+        return $this->npo->name;
     }
 }

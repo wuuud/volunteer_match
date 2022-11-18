@@ -18,8 +18,8 @@ class VolunteerOfferController extends Controller
     public function index()
     {
         $volunteer_offers = VolunteerOffer::with('npo')
-            ->published()->latest()->paginate(5);
-        return response()->json($volunteer_offers);
+            ->published()->latest();
+        return response()->json(["date"=>$volunteer_offers]);
         // API前
         // $volunteer_offers = VolunteerOffer::with('npo')
         //     ->published()->latest()->paginate(5);

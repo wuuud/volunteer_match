@@ -2,23 +2,21 @@
     <div class="relative flex">
         <div
             class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-            <div class="h-full flex flex-auto bg-purple-900 text-white relative bg-indeximage">
+            <div class="h-full flex flex-auto bg-orage-100 text-white relative bg-indeximage">
                 <div class="h-full center md-1/2 flex-auto text-white">
-                    {{--    <div class="w-4/5 flex flex-auto flex-col md:flex-row items-center justify-center p-10 xl:p-32 overflow-hidden">
-                    <div class="absolute bg-gradient-to-b from-amber-200 to-black opacity-75 inset-0 z-0"></div>
-                    <div class="w-4/5 z-10"> --}}
-                    <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
+                    <div class="container mx-auto md:w-1/2 displya:flex w-1/2 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
                         <div class="flex flex-wrap -mx-1 lg:-mx-4 mb-4">
                             @can('npo')
-                                <article class="flex w-full px-4 md:w-1/2 text-xl text-gray-800 leading-normal">
+                                <article class="flex w-full px-4 md:w text-xl text-gray-800 leading-normal">
                                     <div class="post-search-form md-6">
-                                        <h2>希望内容等検索</h2>
-                                    </div>
+                                        <h2>スカウト人材検索</h2>
+                                        {{-- </div>
+                                        <div> --}}
                                         <form class="form-inline" action="{{ route('applications.index') }}" method="GET">
                                             @csrf
                                             <div class="form-group p-md-2">
                                                 <input type="search" name="career" class="form-control"
-                                                    placeholder="人物像等">
+                                                    placeholder="キーワード">
                                                 <input type="submit" value="検索"
                                                     class="justify-center bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
                                             </div>
@@ -26,53 +24,12 @@
                                     </div>
                                 </article>
                             @endcan
-                            <br>
-                            <br>
-                            {{-- <div class="text-5xl sm:text-6xl xl:text-8xl font-bold leading-tight mb-6">
-                        </div>
-                        <div class="sm:text-sm xl:text-md text-gray-200 font-normal"></div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    {{-- </div> --}}
-
-
-
-    {{-- <div class="mx-auto w-3/5 my-8 px-3 py-3">
-                        @can('npo')
-                            <div class="post-search-form md-6">
-                                <h2>希望内容等検索</h2>
-                                <form class="form-inline" action="{{ route('applications.index') }}" method="GET">
-                                    @csrf
-                                    <div class="form-group p-md-2">
-                                        <input type="search" name="career" class="form-control" placeholder="人物像等">
-                                        <input type="submit" value="検索"
-                                            class="justify-center bg-gradient-to-r from-orange-400 to-orange-500 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
-                                    </div>
-                                </form>
-                            </div>
-                        @endcan  --}}
-
-
-    {{-- myapplication --}}
-    {{-- @can('create')
-                <a href="{{ route('applications.create') }}"
-                    class="bg-gradient-to-r from-orange-300 to-orange-600 hover:bg-gradient-to-l hover:from-orange-600 hover:to-orange-300 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">編集</a>
-            @endcan
-            @can('update', $application)
-                <a href="{{ route('applications.edit', $application) }}"
-                    class="bg-gradient-to-r from-orange-300 to-orange-600 hover:bg-gradient-to-l hover:from-orange-600 hover:to-orange-300 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32 sm:mr-2 mb-2 sm:mb-0">編集</a>
-            @endcan
-            @can('delete', $application)
-                <form action="{{ route('applications.destroy', $application) }}" method="post" class="w-full sm:w-32">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="削除" onclick="if(!confirm('削除しますか？')){return false};"
-                        class="bg-gradient-to-r from-emerald-300 to-emerald-600 hover:bg-gradient-to-l hover:from-emerald-600 hover:to-emerald-400 text-gray-100 p-2 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500 w-full sm:w-32">
-                </form>
-            @endcan --}}
+    </div>
 
     {{-- 全件表示 --}}
     <div class="container mx-auto w-3/5 my-8 px-4 py-4">
@@ -87,13 +44,18 @@
                                         src="{{ $application->volunteer->user->profile_photo_url }}" />
                                 @endif
                             </div>
-                            <div class="text-sm font-semibold">
+                            <div class="text-xl font-semibold">
                                 {{ $application->volunteer->user->name }}
                             </div>
                         </div>
                         <div>
                             <p class="mt-4 text-md text-gray-600">
-                                {{ Str::limit($application->career, 50, '...') }}
+                                更新日：{{ $application->volunteer->updated_at->format('Y-m-d') }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="mt-4 text-md text-gray-600">
+                                経歴等：{{ Str::limit($application->career, 50, '...') }}
                             </p>
                         </div>
 
@@ -113,6 +75,5 @@
                 {{ $applications->links() }}
             </div>
         </div>
-    </div>
     </div>
 </x-app-layout>
