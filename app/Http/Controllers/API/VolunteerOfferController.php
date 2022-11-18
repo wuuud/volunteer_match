@@ -65,7 +65,7 @@ class VolunteerOfferController extends Controller
         $scouts = Auth::user()->id == $volunteer_offer->npo->user_id
             ? $scouts = $volunteer_offer->scouts()->with('user')->get()
             : [];
-        return response()->json(compact('volunteer_offer', 'scout', 'scouts'));
+        return response()->json(compact('volunteer_offer'));
         // API前
         // $scout = !isset(Auth::user()->npo)
         //     ? $volunteer_offer->scouts()->firstWhere('user_id', Auth::user()->id)
