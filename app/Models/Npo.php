@@ -19,8 +19,8 @@ class Npo extends Model
 
     protected $appends = [
         // 'user_profile_photo_url',
-        'user_name',
-        'user_id',
+        // 'user_name',
+        
     ];
 
     // protected $hidden = [
