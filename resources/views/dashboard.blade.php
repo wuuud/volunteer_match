@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="container flex mx-auto w-3/5 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
+    <div class="container flex mx-auto w-3/5 my-8 px-4 py-4">
         @can('npo')
             <div class="flex justify-end items-center mb-3">
                 <h4 class="text-gray-400 text-sm">公開状況</h4>
                 <ul class="flex">
                     @foreach (App\Models\VolunteerOffer::STATUS_LIST as $value => $name)
-                        <li class="ml-4">
+                        <li class="ml-4 grid gap-x-8 gap-y-4">
                             <a href="?is_published={{ $value }}"
                                 class="hover:text-blue-500 
                                     @if (Request::get('is_published') === (string) $value ||
