@@ -14,9 +14,9 @@ class Propose extends Model
     const STATUS_ACCEPT = 1;
     const STATUS_REFUSE = 2;
     const STATUS_LIST = [
-        self::STATUS_PROPOSE => '提案中',
-        self::STATUS_ACCEPT => '提案受け入れ',
-        self::STATUS_REFUSE => '提案拒否',
+        self::STATUS_PROPOSE => 'スカウト中',
+        self::STATUS_ACCEPT => '受け入れ',
+        self::STATUS_REFUSE => 'お断り',
     ];
 
     protected $fillable = [

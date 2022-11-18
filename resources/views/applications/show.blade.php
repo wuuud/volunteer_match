@@ -19,9 +19,9 @@
                     <span>更新日 : {{ $application->created_at->format('Y-m-d') }}</span>
                 </div>
             </div>
-            <textarea name="career" rows="10"
+            <label name="career" rows="10"
                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-orange-600 w-full py-2 px-3">{!! nl2br(e($application->career)) !!}
-            </textarea>
+            </label>
         </article>
         {{-- 13.スカウト store,destory npo画面で見える --}}
         <div class="flex flex-col sm:flex-row items-center sm:justify-end text-center my-4">
@@ -68,7 +68,7 @@
         </div>
 
         {{-- メッセージ --}}
-        
+        <br>
         <div id="messages"
             class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
             @foreach ($messages as $message)
@@ -131,6 +131,7 @@
                         <thead>
                             <tr class="text-gray-700 ">
                                 <th class="w-1/5 px-4 py-2">NPO/NGO名</th>
+                                <th class="w-1/5 px-4 py-2">ボランティア内容</th>
                                 <th class="w-1/5 px-4 py-2">スカウト日</th>
                                 <th class="w-1/5 px-4 py-2">ステータス</th>
                                 <th class="w-2/5 px-4 py-2"></th>
@@ -140,8 +141,13 @@
                             @foreach ($proposes as $propose)
                                 <tr>
                                     <td>
-                                        {{-- <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}"> --}}
+                                        <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}">
                                             {{ $propose->user->npo->name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{-- <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}"> --}}
+                                            {{ $propose->user->npo->volunteer_offers }}
                                         {{-- </a> --}}
                                     </td>
                                     <td>{{ $propose->created_at->format('Y-m-d') }}</td>
