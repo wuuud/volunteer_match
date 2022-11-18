@@ -1366,9 +1366,6 @@ select {
 .h-full {
   height: 100%;
 }
-.h-screen {
-  height: 100vh;
-}
 .h-px {
   height: 1px;
 }
@@ -1466,11 +1463,11 @@ select {
 .flex-1 {
   flex: 1 1 0%;
 }
-.flex-auto {
-  flex: 1 1 auto;
-}
 .flex-none {
   flex: none;
+}
+.flex-auto {
+  flex: 1 1 auto;
 }
 .shrink-0 {
   flex-shrink: 0;
@@ -1609,15 +1606,15 @@ select {
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -2783,10 +2780,6 @@ select {
     height: 2.5rem;
   }
 
-  .sm\:h-16 {
-    height: 4rem;
-  }
-
   .sm\:h-20 {
     height: 5rem;
   }
@@ -2801,10 +2794,6 @@ select {
 
   .sm\:w-32 {
     width: 8rem;
-  }
-
-  .sm\:w-16 {
-    width: 4rem;
   }
 
   .sm\:w-auto {

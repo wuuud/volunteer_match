@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class VolunteerOffer extends Model
 {
@@ -28,6 +29,7 @@ class VolunteerOffer extends Model
 
     protected $appends = [
         'npo_name',
+        'image_url'
     ];
     protected $hidden = [
         'npo',
@@ -79,5 +81,14 @@ class VolunteerOffer extends Model
     public function getNpoNameAttribute()
     {
         return $this->npo->name;
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (isset($this->npo->profile_photo_path)) {
+            return Storage::url($this->npo->profile_photo_path);
+        } else {
+            return "https://schoolshop-lab.jp/wp-content/uploads/2018/11/240ec862387d03003cb4c41cd93cb0be.png";
+        }
     }
 }

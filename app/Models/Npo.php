@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Jetstream\HasProfilePhoto;
 
 class Npo extends Model
@@ -17,7 +18,7 @@ class Npo extends Model
     ];
 
     protected $appends = [
-        'profile_photo_url',
+        // 'user_profile_photo_url',
         'user_name',
     ];
 
