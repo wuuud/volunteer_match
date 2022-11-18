@@ -45,8 +45,5 @@ class Npo extends Model
     {
         return $this->user->name;
     }
-    public function getUserIdAttribute()
-    {
-        return $this->user_id;
-    }
+    
 }
