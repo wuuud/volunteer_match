@@ -16,7 +16,7 @@
             <div class="flex justify-between text-sm">
                 <p class="text-gray-700 text-sm">経歴や希望する活動等</p>
                 <div class="font-bold">
-                    <span>更新日 : {{ $application->created_at->format('Y-m-d') }}</span>
+                    <span>更新日 : {{ $application->updated_at->format('Y-m-d') }}</span>
                 </div>
             </div>
             <label name="career" rows="10"
@@ -118,6 +118,7 @@
                 @endif
             @endforeach
         </div>
+        <br>
 
         {{-- テキスト１５  スカウト承認・却下 --}}
         @if (!empty($proposes))
