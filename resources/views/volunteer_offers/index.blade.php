@@ -33,6 +33,9 @@
                             {{-- application用に修正 --}}
                             <a href="{{ route('volunteer_offers.show', $volunteer_offer) }}"
                                 class="flex justify-center bg-emerald-500 hover:bg-green-400 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                                       "                                                     text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                                詳細
+
                                 詳細
                             </a>
                         </div>

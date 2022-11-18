@@ -38,9 +38,7 @@ class Volunteer extends Model
      *
      * @var array
      */
-    // protected $appends = [
-    //     'profile_photo_url',
-    // ];
+    
 
     public function user()
     {
