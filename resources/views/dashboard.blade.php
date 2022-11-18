@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container flex mx-auto w-3/5 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
         @can('npo')
-            <div class="flex w-1/2 justify-end items-center mb-3">
+            <div class="flex justify-end items-center mb-3">
                 <h4 class="text-gray-400 text-sm">公開状況</h4>
                 <ul class="flex">
                     @foreach (App\Models\VolunteerOffer::STATUS_LIST as $value => $name)
@@ -38,7 +38,7 @@
                                 </p>
                                 <div class="flex justify-end items-center">
                                     <a href="{{ route('volunteer_offers.show', $volunteer_offer) }}"
-                                        class="flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                                        class="flex justify-center bg-gradient-to-r from-emerald-500 to-emerald-600 hover:bg-gradient-to-l hover:from-emerald-500 hover:to-emerald-600 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
                                         詳細
                                     </a>
                                 </div>
