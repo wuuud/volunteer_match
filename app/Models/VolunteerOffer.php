@@ -29,10 +29,11 @@ class VolunteerOffer extends Model
 
     protected $appends = [
         'npo_name',
-        'image_url'
+        'image_url',
+        'npo_user_id',
     ];
     protected $hidden = [
-        'npo',
+        // 'npo'
     ];
 
 
@@ -90,5 +91,10 @@ class VolunteerOffer extends Model
         } else {
             return "https://schoolshop-lab.jp/wp-content/uploads/2018/11/240ec862387d03003cb4c41cd93cb0be.png";
         }
+    }
+
+    public function getNpoUserIdAttribute()
+    {
+        return $this->npo->user_id;
     }
 }

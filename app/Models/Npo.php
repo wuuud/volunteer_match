@@ -20,6 +20,7 @@ class Npo extends Model
     protected $appends = [
         // 'user_profile_photo_url',
         'user_name',
+        'user_id',
     ];
 
     // protected $hidden = [
@@ -43,5 +44,9 @@ class Npo extends Model
     public function getUserNameAttribute()
     {
         return $this->user->name;
+    }
+    public function getUserIdAttribute()
+    {
+        return $this->user_id;
     }
 }
