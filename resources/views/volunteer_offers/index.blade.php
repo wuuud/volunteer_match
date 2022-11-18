@@ -1,5 +1,5 @@
 <x-app-layout>
-    <img class="w-max p-0 height-1/4" src="{{ asset('/images/index.png') }}" alt="">
+    <img class="w-max p-0 height-1/4" src="{{ asset('/images/index.png') }}" alt="" height="60">
     <div class="container mx-auto md:w-1/2 displya:flex w-1/2 my-8 px-4 py-4 grid gap-x-8 gap-y-4">
         {{-- <div class="w-maz">
             <div class="shrink-0 flex items-center"> 
@@ -18,13 +18,12 @@
                         <div class="text-sm font-semibold">
                             {{ $volunteer_offer->npo->name }}
                         </div>
-                        
                     </div>
                     <h2 class="text-lg text-gray-700 font-semibold">{{ $volunteer_offer->title }}
                     </h2>
-                    <div class="text-gray-700 text-sm text-right">
-                            <span>募集開始 : {{ $volunteer_offer->start_date }}</span>
-                        </div>
+                    <div class="text-gray-700 text-sm text-left">
+                        <span>募集開始 : {{ $volunteer_offer->start_date }}</span>
+                    </div>
                     <p class="mt-4 text-md text-gray-600">
                         {{ Str::limit($volunteer_offer->description, 50, '...') }}
                     </p>
@@ -33,9 +32,6 @@
                             {{-- application用に修正 --}}
                             <a href="{{ route('volunteer_offers.show', $volunteer_offer) }}"
                                 class="flex justify-center bg-emerald-500 hover:bg-green-400 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
-                                       "                                                     text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
-                                詳細
-
                                 詳細
                             </a>
                         </div>

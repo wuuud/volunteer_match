@@ -8,10 +8,8 @@
                         <li class="ml-4">
                             <a href="?is_published={{ $value }}"
                                 class="hover:text-blue-500 
-                                    @if (Request::get('is_published') === (string)$value 
-                                        || (Request::get('is_published') === null && App\Models\VolunteerOffer::STATUS_OPEN == $value)) 
-                                        text-green-500 font-bold
-                                    @endif
+                                    @if (Request::get('is_published') === (string) $value ||
+                                        (Request::get('is_published') === null && App\Models\VolunteerOffer::STATUS_OPEN == $value)) text-green-500 font-bold @endif
                                 ">
                                 {{ $name }}
                             </a>
@@ -20,31 +18,37 @@
                 </ul>
             </div>
         @endcan
-        <div>
+        <div class="grid gap-x-8 gap-y-4">
+        <div class="flex flex-row">
+                    <div class="flex-none w-1/2">
             @foreach ($volunteer_offers as $volunteer_offer)
-                <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
-                    <div class="mt-4">
-                        <div class="flex justify-between text-sm items-center mb-4">
-                            <div class="text-gray-700 text-sm text-right">
-                                <span>応募期限 :{{ $volunteer_offer->start_date }}</span>
-                                <span>エントリー :{{ $volunteer_offer->scouts->count() }}</span>
+                
+                        <div class="bg-white w-full px-10 py-8 hover:shadow-2xl transition duration-500">
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm items-center mb-4">
+                                    <div class="text-gray-700 text-sm text-right">
+                                        <span>応募期限 :{{ $volunteer_offer->start_date }}</span>
+                                        <span>エントリー :{{ $volunteer_offer->scouts->count() }}</span>
+                                    </div>
+                                </div>
+                                <h2 class="text-lg text-gray-700 font-semibold">{{ $volunteer_offer->title }}
+                                </h2>
+                                <p class="mt-4 text-md text-gray-600">
+                                    {{ Str::limit($volunteer_offer->description, 50, '...') }}
+                                </p>
+                                <div class="flex justify-end items-center">
+                                    <a href="{{ route('volunteer_offers.show', $volunteer_offer) }}"
+                                        class="flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                                        詳細
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <h2 class="text-lg text-gray-700 font-semibold">{{ $volunteer_offer->title }}
-                        </h2>
-                        <p class="mt-4 text-md text-gray-600">
-                            {{ Str::limit($volunteer_offer->description, 50, '...') }}
-                        </p>
-                        <div class="flex justify-end items-center">
-                            <a href="{{ route('volunteer_offers.show', $volunteer_offer) }}"
-                                class="flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600 hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 mt-4 px-5 py-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
-                                詳細
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
+                        <hr>
+                    
             @endforeach
+            </div>
+                </div>
             <div class="block mt-3">
                 {{ $volunteer_offers->links() }}
             </div>

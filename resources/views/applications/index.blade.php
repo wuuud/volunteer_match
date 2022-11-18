@@ -2,7 +2,7 @@
     <div class="relative flex">
         <div
             class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-            <div class="h-full flex flex-auto bg-purple-900 text-white bg-no-repeat bg-cover relative bg-indeximage">
+            <div class="h-full flex flex-auto bg-purple-900 text-white relative bg-indeximage">
                 <div class="h-full center md-1/2 flex-auto text-white">
                     {{--    <div class="w-4/5 flex flex-auto flex-col md:flex-row items-center justify-center p-10 xl:p-32 overflow-hidden">
                     <div class="absolute bg-gradient-to-b from-amber-200 to-black opacity-75 inset-0 z-0"></div>

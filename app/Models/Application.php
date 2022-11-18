@@ -50,6 +50,25 @@ class Application extends Model
         return $query;
     }
 
+    // public function scopeMyProposes(Builder $query)
+    // {
+    //     // 認証後
+    //     if (Auth::user()->volunteer) {
+    //         $query->latest()
+    //             ->with('proposes')
+    //             ->wherehas('proposes', function ($query) {
+    //                 $query->where('user_id')
+    //             });
+    //     } else {
+    //         $query->latest()
+    //             ->with('proposes')
+    //             ->whereHas('proposes', function ($query) {
+    //                 $query->where('user_id', Auth::user()->id);
+    //             });
+    //     }
+    //     return $query;
+    // }
+
     // API後
     // $user = User::find(21);
     // if ($user->volunteer) {
@@ -100,7 +119,4 @@ class Application extends Model
         return $this->volunteer->user->name;
     }
 
-    // public function getVolunteerNameAttribute()
-    // {   return $this->volunteer->user->name;
-    // }
 }

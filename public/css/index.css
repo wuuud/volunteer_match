@@ -2,10 +2,9 @@
 
 .bg-indeximage {
     background-image: url(/images/application_index.png);
-    background-position: top;
+    background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: contain;
     /* background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

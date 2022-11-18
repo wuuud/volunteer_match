@@ -20,7 +20,7 @@ class ApplicationController extends Controller
         //API後・認証後
         $career = $request->career;
         $params = $request->query();
-        $applications = Application::search($params)->latest()->paginate(4);
+        $applications = Application::with('proposes')->search($params)->latest()->paginate(4);
         $applications->appends(compact('career'));
         return response()->json($applications);
 
