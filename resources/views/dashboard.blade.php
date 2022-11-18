@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container flex mx-auto w-3/5 my-8 px-4 py-4">
+    <div class="container mx-auto w-3/5 my-8 px-4 py-4">
         @can('npo')
             <div class="flex justify-end items-center mb-3">
                 <h4 class="text-gray-400 text-sm">公開状況</h4>
