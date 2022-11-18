@@ -41,9 +41,9 @@ class Npo extends Model
         return $this->hasMany(VolunteerOffer::class);
     }
 
-    public function getUserNameAttribute()
-    {
-        return $this->user->name;
-    }
+    // public function getUserNameAttribute()
+    // {
+    //     return $this->user->name;
+    // }
     
 }
