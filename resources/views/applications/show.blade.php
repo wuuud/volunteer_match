@@ -131,7 +131,7 @@
                     <table class="min-w-full table-fixed text-center">
                         <thead>
                             <tr class="text-gray-700 ">
-                                {{-- <th class="w-1/5 px-4 py-2">NPO/NGO名</th> --}}
+                                <th class="w-1/5 px-4 py-2">NPO/NGO名</th>
                                 <th class="w-1/5 px-4 py-2">ボランティア内容</th>
                                 <th class="w-1/5 px-4 py-2">スカウト日</th>
                                 <th class="w-1/5 px-4 py-2">ステータス</th>
@@ -141,11 +141,11 @@
                         <tbody>
                             @foreach ($proposes as $propose)
                                 <tr>
-                                    {{-- <td>
-                                        <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}">
+                                    <td>
+                                        {{-- <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}"> --}}
                                             {{ $propose->user->npo->name }}
-                                        </a>
-                                    </td> --}}
+                                        {{-- </a> --}}
+                                    </td>
                                     <td>
                                         {{-- <a href="{{ route('volunteer_offer.show', $volunteer_offer) }}"> --}}
                                             {{ $propose->user->npo->volunteer_offers }}
