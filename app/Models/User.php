@@ -54,7 +54,6 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
-        'npo_name'
     ];
 
     // SNS認証用

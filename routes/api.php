@@ -24,7 +24,7 @@ use App\Http\Controllers\API\VolunteerOfferController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return $request->user()->append('npo_name');
 });
 
 // <     不要       >
