@@ -52,6 +52,8 @@
             </div>
         @endif
 
+        
+
         <!-- npo Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="npo_name" value="{{ __('NPO/NGO名') }}" />

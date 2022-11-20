@@ -88,6 +88,9 @@ class User extends Authenticatable
 
     public function getNpoNameAttribute()
     {
-        return $this->npo->name;
+        if($this->npo){
+            return $this->npo->name;
+        }
+        return;
     }
 }

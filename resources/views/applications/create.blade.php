@@ -12,7 +12,7 @@
                     概要
                 </label>
                 <input type="text" name="title"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
+                    class="rounded-md shadow-sm border-gray-300 focus:border-sky-300 focus:ring focus:ring-pink-600 w-full py-2 px-3"
                     required placeholder="端的にボランティア内容を記載してください" value="{{ old('title') }}">
             </div> --}}
             <div class="mb-4">
@@ -20,7 +20,7 @@
                     希望する活動や経歴等
                 </label> --}}
                 <textarea name="career" rows="10"
-                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-orange-600 w-full py-2 px-3"
+                    class="rounded-md shadow-sm border-gray-300 focus:border-sky-300 focus:ring focus:ring-orange-600 w-full py-2 px-3"
                     required placeholder="経歴、希望する活動内容や場所等を記載してください">{{ old('career') }}</textarea>
             </div>
             {{-- <div class="mb-4">

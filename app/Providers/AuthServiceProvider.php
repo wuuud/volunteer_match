@@ -34,8 +34,8 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('volunteer', function (User $user) {
             // logger('tetetetetet');
-            return isset($user->volunteer);
-            // return true;
+            // return isset($user->volunteer);
+            return true;
         });
 
         // message
