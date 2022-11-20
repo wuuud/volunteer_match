@@ -12,7 +12,7 @@
                 </label>
                 <input type="text" name="title"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-green-400 w-full py-2 px-3"
-                    required placeholder="端的にボランティア内容を記載してください" value="{{ old('title') }}">
+                    required placeholder="ボランティア内容・国" value="{{ old('title') }}">
             </div>
             {{-- <div class="mb-4">
                 <label class="block text-white mb-2" for="occupation_id">
@@ -39,7 +39,7 @@
                 </label>
                 <textarea name="description" rows="10"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-green-400 w-full py-2 px-3"
-                    required placeholder="活動内容や場所等の詳細を記載してください">{{ old('description') }}</textarea>
+                    required placeholder="活動内容や場所等の詳細">{{ old('description') }}</textarea>
             </div>
             <div class="mb-4">
                 <label class="block font-bold text-gray-600 mb-2" for="description">
