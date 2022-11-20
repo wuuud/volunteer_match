@@ -123,7 +123,7 @@
         {{-- テキスト１５  スカウト承認・却下 --}}
         @if (!empty($proposes))
             <hr>
-            <h2 class="flex justify-center font-bold text-lg my-4">スカウトを受けたNPO・NGO一覧</h2>
+            <h2 class="flex justify-center font-bold text-lg my-4">スカウトを受けたNPO・NGO</h2>
             <div class="">
                 <form method="post">
                     @csrf

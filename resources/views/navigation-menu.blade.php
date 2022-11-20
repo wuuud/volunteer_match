@@ -37,7 +37,7 @@
                     </div>
                 @endcan
 
-                <!-- 追加  私のスカウト画面  Navigation Links -->
+                <!-- 追加  私のスカウト画面 -->
                 @can('volunteer')
                     <div class="hidden space-x-8 sm:-my-px xl:ml-10 sm:flex text-lg">
                         <x-jet-nav-link href="{{ route('myapplication') }}" :active="request()->routeIs('myapplication')">
@@ -46,8 +46,6 @@
                     </div>
                 @endcan
             </div>
-
-
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
