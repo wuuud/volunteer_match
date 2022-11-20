@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\VolunteerOffer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class VolunteerOfferController extends Controller
@@ -30,14 +32,28 @@ class VolunteerOfferController extends Controller
     {
         $volunteer_offer = new VolunteerOffer($request->all());
         $volunteer_offer->npo_id = $request->user()->npo->id;
+        // 画像を取得   $file input typeのfile = $request->file(input nameの'image');
+        $file = $request->file('image');
+        // ファイル名を保存  取得したときの年月日時分秒      ファイル名を取得
+        $volunteer_offer->image = self::createFileName($file);
+        // トランザクション開始
+        DB::beginTransaction();
         try {
             $volunteer_offer->save();
+            // 写真本体保存に失敗した時   putFileファイルを送るAs名前を贈る 
+            if (!Storage::putFileAs('images/volunteer_o$volunteer_offers', $file, $volunteer_offer->image)) {
+                // 例外を投げてロールバックさせる
+                //newある！インスタンス化だ！！＄\Exception = new \Exception;
+                throw new \Exception('画像ファイルの保存に失敗しました。');
+            }
+            // 写真本体に保存 トランザクション終了(成功)
+            DB::commit();
         } catch (\Exception $e) {
+        DB::rollback();
             logger($e->getMessage());
             return response(status: 500);
         }
         return response()->json($volunteer_offer, 201); 
-        
             // API前
         // $volunteer_offer = new VolunteerOffer($request->all());
         // $volunteer_offer->npo_id = $request->user()->npo->id;
