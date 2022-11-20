@@ -2493,6 +2493,9 @@ select {
 .hover\:to-orange-800:hover {
   --tw-gradient-to: #9a3412;
 }
+.hover\:to-orange-600:hover {
+  --tw-gradient-to: #ea580c;
+}
 .hover\:font-bold:hover {
   font-weight: 700;
 }

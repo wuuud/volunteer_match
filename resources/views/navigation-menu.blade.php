@@ -38,9 +38,9 @@
                 @endcan
 
                 <!-- 追加  私のスカウト画面  Navigation Links -->
-                @can('volunteer', Auth::user()->id)
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:fle text-lg">
-                        <x-jet-nav-link href="{{ route('myapplication') }}" :active="request()->routeIs('myapplicatin')">
+                @can('volunteer')
+                    <div class="hidden space-x-8 sm:-my-px xl:ml-10 sm:flex text-lg">
+                        <x-jet-nav-link href="{{ route('myapplication') }}" :active="request()->routeIs('myapplication')">
                             {{ __('My Scout') }}
                         </x-jet-nav-link>
                     </div>
