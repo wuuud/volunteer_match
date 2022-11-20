@@ -12,48 +12,39 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-lg">
                     <x-jet-nav-link href="/">
-                        {{ __('全ての求人') }}
+                        {{ __('All programs') }}
                     </x-jet-nav-link>
                 </div>
 
 
                 <!-- Navigation Links -->
                 @can('npo')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px xl:ml-10 sm:flex text-lg">
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('作成した求人') }}
+                            {{ __('My programs') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
 
                 <!-- 追加  スカウトする画面  Navigation Links -->
                 @can('npo')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-lg">
                         <x-jet-nav-link href="{{ route('applications.index') }}">
-                            {{ __('スカウトする') }}
+                            {{ __('Scout') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
 
                 <!-- 追加  私のスカウト画面  Navigation Links -->
                 @can('volunteer')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:fle text-lg">
                         <x-jet-nav-link href="{{ route('myapplication') }}" :active="request()->routeIs('myapplicatin')">
-                            {{ __('マイスカウト') }}
+                            {{ __('My Scout') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
-
-                <!-- 追加  支払画面  Navigation Links -->
-                {{-- @can('auth')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('proposes_dashboard') }}">
-                            {{ __('支払い') }}
-                        </x-jet-nav-link>
-                    </div>
-                @endcan --}}
             </div>
 
 
@@ -108,7 +99,7 @@
                             @endcan
                             @can('create', App\Models\Application::class)
                                 <x-jet-dropdown-link href="{{ route('applications.create') }}">
-                                    {{ 'スカウト用経歴等作成' }}
+                                    {{ 'スカウト用経歴書作成' }}
                                 </x-jet-dropdown-link>
                             @endcan
 

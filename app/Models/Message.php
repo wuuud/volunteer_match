@@ -14,13 +14,8 @@ class Message extends Model
         'messageable_id',
         'message',
     ];
-    // API
-    // protected $appends = [
-    //     'message',
-    // ];
 
     protected $hidden = [
-        // 'user_id',
         'user',
     ];
 

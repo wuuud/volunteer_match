@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 use Laravel\Jetstream\HasProfilePhoto;
 
 class Npo extends Model
@@ -23,13 +23,6 @@ class Npo extends Model
         
     ];
 
-    // protected $hidden = [
-    //     'name',
-    //     'profile_photo_path',
-    //     'created_at',
-    //     'updated_at',
-    // ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -40,10 +33,4 @@ class Npo extends Model
     {
         return $this->hasMany(VolunteerOffer::class);
     }
-
-    // public function getUserNameAttribute()
-    // {
-    //     return $this->user->name;
-    // }
-    
 }

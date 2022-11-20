@@ -9,7 +9,7 @@
                             @can('npo')
                                 <article class="flex w-full px-4 md:w text-xl text-gray-800 leading-normal">
                                     <div class="post-search-form md-6">
-                                        <h2>スカウト人材検索</h2>
+                                        <h4>スカウト人材検索</h4>
                                         {{-- </div>
                                         <div> --}}
                                         <form class="form-inline" action="{{ route('applications.index') }}" method="GET">

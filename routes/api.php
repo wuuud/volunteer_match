@@ -88,8 +88,7 @@ Route::apiResource('applications', ApplicationController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->names('api.applications')
     ->middleware('can:volunteer')
-    ->middleware('auth:api')
-    ;
+    ->middleware('auth:api');
 Route::apiResource('applications', ApplicationController::class)
     ->only(['show', 'index'])
     ->middleware('auth:api');

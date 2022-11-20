@@ -32,10 +32,6 @@ class VolunteerOffer extends Model
         'image_url',
         'npo_user_id',
     ];
-    protected $hidden = [
-        // 'npo'
-    ];
-
 
     public function scopePublished(Builder $query)
     {
@@ -58,7 +54,6 @@ class VolunteerOffer extends Model
                     $query->where('user_id', Auth::user()->id);
                 });
         }
-
         return $query;
     }
 
@@ -73,7 +68,6 @@ class VolunteerOffer extends Model
         return $this->belongsTo(Npo::class);
     }
 
-    // 削除？ エントリー用
     public function scouts()
     {
         return $this->hasMany(Scout::class);

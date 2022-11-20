@@ -29,8 +29,6 @@ class VolunteerOfferController extends Controller
     public function store(Request $request)
     {
         $volunteer_offer = new VolunteerOffer($request->all());
-        // logger($request->all());
-        // logger($volunteer_offer);
         $volunteer_offer->npo_id = $request->user()->npo->id;
         try {
             $volunteer_offer->save();

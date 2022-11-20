@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Propose;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 class ProposeController extends Controller
 {

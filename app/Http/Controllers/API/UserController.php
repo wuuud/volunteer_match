@@ -21,19 +21,15 @@ class UserController extends Controller
         // 認証後
         $application = Application::myApplication()->first();
         if (isset($application)) {
-            // return redirect()->route('applications.show', $application);
             return response()->json(compact('application'));
         }
-        // return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
         return response()->json($application, 204);
 
         // API後
         $application = Application::myApplication()->first();
         if (isset($application)) {
-            // return redirect()->route('applications.show', $application);
             return response()->json(compact('application'));
         }
-        // return redirect()->route('applications.create')->withErrors('経歴を先に登録してください。');
         return response()->json($application, 204);
 
         // API前
