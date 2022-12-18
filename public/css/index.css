@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.bg-indeximage {
+    background-image: url(/images/application_index.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain; 
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; */
+}

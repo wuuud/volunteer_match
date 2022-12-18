@@ -1,0 +1,30 @@
+
+### index
+# @prompt propose_id
+GET /api/proposes/{{ propose_id }}/messages HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+### store
+# @prompt propose_id
+POST /api/proposes/{{ propose_id }}/messages HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{ token }}
+
+{
+    "message": "test_chat_message"
+}
+
+
+### destroy
+# @prompt propose_id
+# @prompt message_id
+DELETE /api/proposes/{{ propose_id }}/messages/{{ message_id }} HTTP/1.1
+Host: {{ host }}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{ token }}
